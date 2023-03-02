@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
+import com.atahan.compose_recipe.view.screen.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,22 +23,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    HomeScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposeRecipeTheme {
-        Greeting("Android")
+
     }
 }
