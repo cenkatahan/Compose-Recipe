@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
 
 @Composable
-fun TopSection(modifier: Modifier) {
+fun TopSection(modifier: Modifier = Modifier) {
 
     Column(modifier = modifier) {
         Row(
