@@ -2,12 +2,10 @@ package com.atahan.compose_recipe.view.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import com.atahan.compose_recipe.R
 
@@ -24,7 +22,6 @@ fun SearchBar(modifier: Modifier = Modifier, searchString: MutableState<String>)
             Image(
                 painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = "search icon",
-                colorFilter = ColorFilter.tint(MaterialTheme.colors.primary)
             )
         },
         modifier = modifier.fillMaxWidth()

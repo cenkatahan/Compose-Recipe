@@ -2,6 +2,7 @@ package com.atahan.compose_recipe.view.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,8 +14,10 @@ import com.atahan.compose_recipe.view.composables.TopSection
 fun HomeScreen() {
     val mealSearched = remember { mutableStateOf("") }
 
-    Column {
-        TopSection(modifier = Modifier.padding(16.dp))
+    Scaffold(
+        topBar = { TopSection(modifier = Modifier.padding(16.dp)) },
+        bottomBar = {}
+    ) {
         SearchBar(
             modifier = Modifier.padding(16.dp),
             searchString = mealSearched

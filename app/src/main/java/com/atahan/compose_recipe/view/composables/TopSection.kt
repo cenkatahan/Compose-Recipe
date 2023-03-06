@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,15 +30,20 @@ fun TopSection(modifier: Modifier = Modifier) {
                 contentDescription = "profile",
             )
 
-            Row(
-                horizontalArrangement = Arrangement.Start
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_location),
-                    contentDescription = "location"
-                )
-                Text(text = "Izmir, Turkey")
-            }
+            Icon(
+                painter = painterResource(id = R.drawable.ic_add_circle),
+                contentDescription = "location"
+            )
+
+//            Row(
+//                horizontalArrangement = Arrangement.Start
+//            ) {
+//                Icon(
+//                    painter = painterResource(id = R.drawable.ic_location),
+//                    contentDescription = "location"
+//                )
+//                Text(text = "Izmir, Turkey")
+//            }
 
         }
 
