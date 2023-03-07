@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,7 +52,8 @@ fun TopSection(modifier: Modifier = Modifier) {
             text = "Let's find What you're gonna eat",
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h4,
-            modifier = Modifier.padding(top = 16.dp)
+            modifier = Modifier.padding(top = 16.dp),
+            color = Color.Black
         )
 
     }
