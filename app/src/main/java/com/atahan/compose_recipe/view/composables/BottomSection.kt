@@ -9,15 +9,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.atahan.compose_recipe.model.Screen
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
-fun BottomSection(navController: NavHostController, modifier: Modifier = Modifier) {
-    val backStackEntry = navController.currentBackStackEntryAsState().value
+fun BottomSection(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    onItemClick: (Screen) -> Unit
+) {
+    val backStackEntry = navController.currentBackStackEntryAsState()
     BottomNavigation(
         backgroundColor = Color.White,
         contentColor = AppBlue,
@@ -29,47 +32,41 @@ fun BottomSection(navController: NavHostController, modifier: Modifier = Modifie
         )
 
         screens.forEach { screen ->
-            val selected = screen.route == backStackEntry?.destination?.route
+            val selected = screen.route == backStackEntry.value?.destination?.route
             BottomNavigationItem(
                 selected = selected,
-                onClick = { /*TODO*/ },
+                onClick = { onItemClick(screen) },
                 icon = {
-                    ChooseIconBy(selected, screen)
+                    when (selected) {
+                        true ->
+                            Column(verticalArrangement = Arrangement.Center) {
+                                Icon(
+                                    painterResource(id = screen.selectedIcon),
+                                    contentDescription = screen.route,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                                Text(
+                                    text = screen.route,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        else ->
+                            Column(verticalArrangement = Arrangement.Center) {
+                                Icon(
+                                    painterResource(id = screen.icon),
+                                    contentDescription = screen.route,
+                                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                                )
+                                Text(
+                                    text = screen.route,
+                                    fontWeight = FontWeight.Normal,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                    }
                 },
-
-                )
+            )
         }
-    }
-}
-
-@Composable
-private fun ChooseIconBy(isSelected: Boolean, screen: Screen) {
-    when (isSelected) {
-        true ->
-            Column(verticalArrangement = Arrangement.Center) {
-                Icon(
-                    painterResource(id = screen.selectedIcon),
-                    contentDescription = screen.route,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-                Text(
-                    text = screen.route,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center
-                )
-            }
-        else ->
-            Column(verticalArrangement = Arrangement.Center) {
-                Icon(
-                    painterResource(id = screen.icon),
-                    contentDescription = screen.route,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-                Text(
-                    text = screen.route,
-                    fontWeight = FontWeight.Normal,
-                    textAlign = TextAlign.Center
-                )
-            }
     }
 }
