@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.atahan.compose_recipe.navigation.BottomNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
+import com.atahan.compose_recipe.view.composables.BottomSection
+import com.atahan.compose_recipe.view.composables.TopSection
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +24,17 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
 
                 // A surface container using the 'background' color from the theme
-                Surface(
+                Scaffold(
+                    topBar = { TopSection(modifier = Modifier.padding(16.dp)) },
+                    bottomBar = { BottomSection(navController = navController, onItemClick = {
+                        navController.navigate(it.route) {
+                            popUpTo(it.route){
+                                inclusive = true
+                            }
+                        }
+                    }) },
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-//                    HomeScreen()
+                ){
                     BottomNavigation(navController = navController)
                 }
             }
