@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.atahan.compose_recipe.navigation.BottomNavigation
+import com.atahan.compose_recipe.navigation.AppNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
 import com.atahan.compose_recipe.view.composables.BottomSection
 import com.atahan.compose_recipe.view.composables.TopSection
@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     }) },
                     modifier = Modifier.fillMaxSize(),
                 ){
-                    BottomNavigation(navController = navController)
+                    AppNavigation(navController = navController)
                 }
             }
         }

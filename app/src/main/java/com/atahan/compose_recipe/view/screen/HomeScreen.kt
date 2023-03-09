@@ -9,7 +9,7 @@ import com.atahan.compose_recipe.view.composables.ChipGroup
 import com.atahan.compose_recipe.view.composables.SearchBar
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onClickNavigateAdd: () -> Unit, onClickNavigateProfile: () -> Unit) {
     val mealSearched = remember { mutableStateOf("") }
 
     Column {
