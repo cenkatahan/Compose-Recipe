@@ -1,0 +1,30 @@
+package com.atahan.compose_recipe.view.composables
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.atahan.compose_recipe.common.Mock
+
+@Composable
+fun MealRow() {
+    val meals = Mock.fetchMockMeals()
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "TITLE", fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(8.dp))
+        LazyRow {
+            meals.forEach { meal ->
+                item {
+                    MealCard(meal)
+                }
+            }
+        }
+    }
+}
