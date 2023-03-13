@@ -41,7 +41,7 @@ fun TopSection(
             )
 
             IconButton(onClick = { onClickAdd() }) {
-                Icon(painter = painterResource(id = R.drawable.ic_add_circle), contentDescription = null)
+                Icon(painter = painterResource(id = R.drawable.ic_add_circle), contentDescription = "add")
             }
 
 //            Icon(
