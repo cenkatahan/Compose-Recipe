@@ -34,11 +34,6 @@ fun MealCard(
         modifier = Modifier.size(width = 150.dp, height = 150.dp)
     ) {
 
-//        val isFavorite = when (meal.isFavorite) {
-//            true ->
-//            else -> painterResource(id = R.drawable.ic_favorite)
-//        }
-
         Column(
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
@@ -77,6 +72,29 @@ fun MealCard(
                         else -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_favorite),
+                                contentDescription = "favorite_icon"
+                            )
+                        }
+                    }
+
+                }
+
+                IconButton(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(0.dp),
+                    onClick = { onClickFavorite(!isFavorite) }
+                ) {
+                    when (isFavorite) {
+                        true -> {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_meal_plan_selected),
+                                contentDescription = "favorite_icon"
+                            )
+                        }
+                        else -> {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_meal_plan),
                                 contentDescription = "favorite_icon"
                             )
                         }
