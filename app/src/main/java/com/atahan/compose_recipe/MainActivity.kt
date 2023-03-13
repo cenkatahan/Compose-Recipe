@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import com.atahan.compose_recipe.model.Screen
 import com.atahan.compose_recipe.navigation.AppNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
 import com.atahan.compose_recipe.view.composables.BottomSection
@@ -25,17 +26,30 @@ class MainActivity : ComponentActivity() {
 
                 // A surface container using the 'background' color from the theme
                 Scaffold(
-                    topBar = { TopSection(modifier = Modifier.padding(16.dp)) },
-                    bottomBar = { BottomSection(navController = navController, onItemClick = {
-                        navController.navigate(it.route) {
-                            popUpTo(it.route){
-                                inclusive = true
+                    topBar = {
+                        TopSection(modifier = Modifier.padding(16.dp), onCLickProfile = {
+                            navController.navigate(Screen.MealMenu.route) {
+//                                popUpTo(Screen.Home.route) {
+//                                    inclusive = true
+//                                }
                             }
-                        }
-                    }) },
+                        },
+                            onClickAdd = {
+                                navController.navigate(Screen.Favorites.route)
+                            })
+                    },
+                    bottomBar = {
+                        BottomSection(navController = navController, onItemClick = {
+                            navController.navigate(it.route) {
+                                popUpTo(it.route) {
+                                    inclusive = true
+                                }
+                            }
+                        })
+                    },
                     modifier = Modifier.fillMaxSize(),
-                ){
-                    AppNavigation(navController = navController)
+                ) {
+                    AppNavigation(navController = navController, paddingValues = it)
                 }
             }
         }
