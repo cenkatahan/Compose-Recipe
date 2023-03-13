@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -17,14 +19,28 @@ fun MealRow() {
     val meals = Mock.fetchMockMeals()
 
     Column(modifier = Modifier.padding(16.dp)) {
+
         Text(text = "TITLE", fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         LazyRow {
+
             meals.forEach { meal ->
                 item {
-                    MealCard(meal)
+                    var isFavorite by remember {
+                        mutableStateOf(meal.isFavorite)
+                    }
+                    MealCard(
+                        meal,
+                        isFavorite,
+                        onClickFavorite = {
+                            isFavorite = it
+                        }
+                    )
                 }
             }
+
         }
+
     }
+
 }

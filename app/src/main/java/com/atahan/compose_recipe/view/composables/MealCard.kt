@@ -23,14 +23,21 @@ import com.atahan.compose_recipe.model.MealType
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
-fun MealCard(meal: Meal) {
+fun MealCard(
+    meal: Meal,
+    isFavorite: Boolean,
+    onClickFavorite: (Boolean) -> Unit
+) {
     Card(
         elevation = 4.dp,
         border = BorderStroke(1.dp, AppBlue),
         modifier = Modifier.size(width = 150.dp, height = 150.dp)
-
-//        backgroundColor = Color(0xFFD8D8D8)
     ) {
+
+//        val isFavorite = when (meal.isFavorite) {
+//            true ->
+//            else -> painterResource(id = R.drawable.ic_favorite)
+//        }
 
         Column(
             verticalArrangement = Arrangement.SpaceBetween,
@@ -58,11 +65,23 @@ fun MealCard(meal: Meal) {
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(0.dp),
-                    onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_favorite),
-                        contentDescription = "favorite_icon"
-                    )
+                    onClick = { onClickFavorite(!isFavorite) }
+                ) {
+                    when (isFavorite) {
+                        true -> {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_favorite_selected),
+                                contentDescription = "favorite_icon"
+                            )
+                        }
+                        else -> {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_favorite),
+                                contentDescription = "favorite_icon"
+                            )
+                        }
+                    }
+
                 }
             }
 
@@ -101,5 +120,5 @@ fun MealCardPreview() {
         type = MealType.FAST_FOOD,
         prepareTime = 45
     )
-    MealCard(meal)
+    MealCard(meal, true, onClickFavorite = { meal.isFavorite })
 }
