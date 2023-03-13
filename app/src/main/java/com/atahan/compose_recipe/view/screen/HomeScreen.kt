@@ -27,7 +27,7 @@ fun HomeScreen(onClickNavigateAdd: () -> Unit, onClickNavigateProfile: () -> Uni
     ) {
 
         Text(
-            text = "Let's find What you're gonna eat",
+            text = "Neriman Hanım, ne yapacağız bugün?",
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.h4,
             modifier = Modifier.padding(16.dp),
@@ -42,7 +42,7 @@ fun HomeScreen(onClickNavigateAdd: () -> Unit, onClickNavigateProfile: () -> Uni
         ChipGroup()
 
         Column {
-            (0..9).forEach {
+            repeat((0..9).count()) {
                 MealRow()
             }
         }
