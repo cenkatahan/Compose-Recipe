@@ -16,7 +16,9 @@ fun FavoritesScreen() {
     val favMeals = Mock.fetchMockMeals().filter { it.isFavorite }
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -33,7 +35,7 @@ fun FavoritesScreen() {
                         isFavorite = it
                     }
                 )
-                
+
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }

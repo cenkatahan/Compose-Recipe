@@ -5,14 +5,18 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
+import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
 fun TopSection(
@@ -23,7 +27,11 @@ fun TopSection(
     val interactionSource = remember {
         MutableInteractionSource()
     }
-    Column(modifier = modifier) {
+    TopAppBar(
+        modifier = modifier.fillMaxWidth(),
+        backgroundColor = Color.White,
+        elevation = 0.dp
+    ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -33,6 +41,7 @@ fun TopSection(
             Icon(
                 painter = painterResource(id = R.drawable.ic_profile_default),
                 contentDescription = "profile",
+                tint = AppBlue,
                 modifier = Modifier.clickableWithoutRipple(
                     interactionSource = interactionSource,
                 ) {
@@ -41,23 +50,15 @@ fun TopSection(
             )
 
             IconButton(onClick = { onClickAdd() }) {
-                Icon(painter = painterResource(id = R.drawable.ic_add_circle), contentDescription = "add")
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add_circle),
+                    contentDescription = "add",
+                    tint = AppBlue
+                )
             }
 
-//            Icon(
-//                painter = painterResource(id = R.drawable.ic_add_circle),
-//                contentDescription = "location",
-//                modifier = Modifier.clickableWithoutRipple(
-//                    interactionSource = interactionSource
-//                ) {
-//                    onClickAdd()
-//                }
-//            )
-
         }
-
     }
-
 }
 
 fun Modifier.clickableWithoutRipple(
