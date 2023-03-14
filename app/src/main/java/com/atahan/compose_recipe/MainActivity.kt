@@ -14,8 +14,8 @@ import androidx.navigation.compose.rememberNavController
 import com.atahan.compose_recipe.model.Screen
 import com.atahan.compose_recipe.navigation.AppNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
-import com.atahan.compose_recipe.view.composables.BottomSection
-import com.atahan.compose_recipe.view.composables.TopSection
+import com.atahan.compose_recipe.view.composables.BottomBar
+import com.atahan.compose_recipe.view.composables.TopBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,19 +27,22 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Scaffold(
                     topBar = {
-                        TopSection(modifier = Modifier.padding(16.dp), onCLickProfile = {
-                            navController.navigate(Screen.MealMenu.route) {
+                        TopBar(
+                            modifier = Modifier.padding(16.dp),
+                            onCLickProfile = {
+                                navController.navigate(Screen.MealMenu.route) {
 //                                popUpTo(Screen.Home.route) {
 //                                    inclusive = true
 //                                }
-                            }
-                        },
+                                }
+                            },
                             onClickAdd = {
                                 navController.navigate(Screen.Favorites.route)
-                            })
+                            },
+                        )
                     },
                     bottomBar = {
-                        BottomSection(navController = navController, onItemClick = {
+                        BottomBar(navController = navController, onItemClick = {
                             navController.navigate(it.route) {
                                 popUpTo(it.route) {
                                     inclusive = true

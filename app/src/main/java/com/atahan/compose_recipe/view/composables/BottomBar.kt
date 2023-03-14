@@ -9,13 +9,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.atahan.compose_recipe.model.Screen
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
-fun BottomSection(
+fun BottomBar(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     onItemClick: (Screen) -> Unit
@@ -24,6 +25,7 @@ fun BottomSection(
     BottomNavigation(
         backgroundColor = Color.White,
         contentColor = AppBlue,
+        elevation = 2.dp
     ) {
         val screens = arrayListOf(
             Screen.Home,

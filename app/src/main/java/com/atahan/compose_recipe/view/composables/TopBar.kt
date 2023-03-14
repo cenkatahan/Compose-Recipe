@@ -7,7 +7,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -19,14 +18,11 @@ import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
-fun TopSection(
+fun TopBar(
     modifier: Modifier = Modifier,
     onCLickProfile: () -> Unit,
     onClickAdd: () -> Unit
 ) {
-    val interactionSource = remember {
-        MutableInteractionSource()
-    }
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
         backgroundColor = Color.White,
@@ -38,18 +34,21 @@ fun TopSection(
             modifier = Modifier.fillMaxWidth()
         ) {
 
-            Icon(
-                painter = painterResource(id = R.drawable.ic_profile_default),
-                contentDescription = "profile",
-                tint = AppBlue,
-                modifier = Modifier.clickableWithoutRipple(
-                    interactionSource = interactionSource,
-                ) {
-                    onCLickProfile()
-                }
-            )
+            IconButton(
+                modifier = Modifier.size(24.dp),
+                onClick = { onCLickProfile() }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_profile_default),
+                    contentDescription = "profile",
+                    tint = AppBlue
+                )
+            }
 
-            IconButton(onClick = { onClickAdd() }) {
+            IconButton(
+                modifier = Modifier.size(24.dp),
+                onClick = { onClickAdd() }
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_add_circle),
                     contentDescription = "add",
