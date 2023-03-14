@@ -25,8 +25,10 @@ import com.atahan.compose_recipe.ui.theme.AppBlue
 @Composable
 fun MealCard(
     meal: Meal,
-    isFavorite: Boolean,
-    onClickFavorite: (Boolean) -> Unit
+    isFavorite: Boolean = false,
+    isOnTheMenu: Boolean = false,
+    onClickFavorite: (Boolean) -> Unit,
+    onClickToMenu: (Boolean) -> Unit
 ) {
     Card(
         elevation = 4.dp,
@@ -83,9 +85,9 @@ fun MealCard(
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(0.dp),
-                    onClick = { onClickFavorite(!isFavorite) }
+                    onClick = { onClickToMenu(!isOnTheMenu) }
                 ) {
-                    when (isFavorite) {
+                    when (isOnTheMenu) {
                         true -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_meal_plan_selected),
@@ -138,5 +140,5 @@ fun MealCardPreview() {
         type = MealType.FAST_FOOD,
         prepareTime = 45
     )
-    MealCard(meal, true, onClickFavorite = { meal.isFavorite })
+    MealCard(meal, true, onClickFavorite = { meal.isFavorite }, onClickToMenu = {meal.isOnTheMealMenu})
 }

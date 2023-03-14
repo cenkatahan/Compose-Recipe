@@ -29,11 +29,18 @@ fun MealRow() {
                     var isFavorite by remember {
                         mutableStateOf(meal.isFavorite)
                     }
+                    var isOnTheMenu by remember {
+                        mutableStateOf(meal.isOnTheMealMenu)
+                    }
                     MealCard(
-                        meal,
-                        isFavorite,
+                        meal = meal,
+                        isFavorite = isFavorite,
+                        isOnTheMenu = isOnTheMenu,
                         onClickFavorite = {
                             isFavorite = it
+                        },
+                        onClickToMenu = {
+                            isOnTheMenu = it
                         }
                     )
                 }

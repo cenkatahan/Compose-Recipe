@@ -33,7 +33,8 @@ fun FavoritesScreen() {
                     isFavorite = isFavorite,
                     onClickFavorite = {
                         isFavorite = it
-                    }
+                    },
+                    onClickToMenu = {}
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
