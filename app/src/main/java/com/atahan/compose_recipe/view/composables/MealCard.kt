@@ -4,10 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,18 +19,25 @@ import com.atahan.compose_recipe.model.Meal
 import com.atahan.compose_recipe.model.MealType
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MealCard(
     meal: Meal,
     isFavorite: Boolean = false,
     isOnTheMenu: Boolean = false,
-    onClickFavorite: (Boolean) -> Unit,
-    onClickToMenu: (Boolean) -> Unit
+    onClickFavorite: ((Boolean) -> Unit)? = null,
+    onClickToMenu: ((Boolean) -> Unit)? = null,
+    onClickDetail: ((Meal) -> Unit)? = null
 ) {
     Card(
         elevation = 4.dp,
         border = BorderStroke(1.dp, AppBlue),
-        modifier = Modifier.size(width = 150.dp, height = 150.dp)
+        modifier = Modifier.size(width = 150.dp, height = 150.dp),
+        onClick = {
+            if (onClickDetail != null) {
+                onClickDetail(meal)
+            }
+        }
     ) {
 
         Column(
@@ -62,7 +66,11 @@ fun MealCard(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(0.dp),
-                    onClick = { onClickFavorite(!isFavorite) }
+                    onClick = {
+                        if (onClickFavorite != null) {
+                            onClickFavorite(!isFavorite)
+                        }
+                    }
                 ) {
                     when (isFavorite) {
                         true -> {
@@ -85,7 +93,11 @@ fun MealCard(
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(0.dp),
-                    onClick = { onClickToMenu(!isOnTheMenu) }
+                    onClick = {
+                        if (onClickToMenu != null) {
+                            onClickToMenu(!isOnTheMenu)
+                        }
+                    }
                 ) {
                     when (isOnTheMenu) {
                         true -> {
@@ -140,5 +152,9 @@ fun MealCardPreview() {
         type = MealType.FAST_FOOD,
         prepareTime = 45
     )
-    MealCard(meal, true, onClickFavorite = { meal.isFavorite }, onClickToMenu = {meal.isOnTheMealMenu})
+    MealCard(
+        meal,
+        true,
+        onClickFavorite = { meal.isFavorite },
+        onClickToMenu = { meal.isOnTheMealMenu })
 }
