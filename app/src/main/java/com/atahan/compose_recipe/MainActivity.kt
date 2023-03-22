@@ -30,14 +30,18 @@ class MainActivity : ComponentActivity() {
                         TopBar(
                             modifier = Modifier.padding(16.dp),
                             onCLickProfile = {
-                                navController.navigate(Screen.MealMenu.route) {
-//                                popUpTo(Screen.Home.route) {
-//                                    inclusive = true
-//                                }
+                                navController.navigate(Screen.Profile.route) {
+                                    popUpTo(Screen.Home.route) {
+                                        inclusive = true
+                                    }
                                 }
                             },
                             onClickAdd = {
-                                navController.navigate(Screen.Favorites.route)
+                                navController.navigate(Screen.RecipeForm.route) {
+                                    popUpTo(Screen.Home.route) {
+                                        inclusive = true
+                                    }
+                                }
                             },
                         )
                     },

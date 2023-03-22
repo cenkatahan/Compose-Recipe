@@ -16,7 +16,7 @@ import com.atahan.compose_recipe.view.composables.MealRow
 import com.atahan.compose_recipe.view.composables.SearchBar
 
 @Composable
-fun HomeScreen(onClickNavigateAdd: () -> Unit, onClickNavigateProfile: () -> Unit) {
+fun HomeScreen() {
     val mealSearched = remember { mutableStateOf("") }
 
     val scrollState = rememberScrollState()
