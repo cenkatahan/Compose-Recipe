@@ -27,7 +27,7 @@ fun MealCard(
     isOnTheMenu: Boolean = false,
     onClickFavorite: ((Boolean) -> Unit)? = null,
     onClickToMenu: ((Boolean) -> Unit)? = null,
-    onClickDetail: ((Meal) -> Unit)? = null
+    onClickDetail: (() -> Unit)? = null
 ) {
     Card(
         elevation = 4.dp,
@@ -35,7 +35,7 @@ fun MealCard(
         modifier = Modifier.size(width = 150.dp, height = 150.dp),
         onClick = {
             if (onClickDetail != null) {
-                onClickDetail(meal)
+                onClickDetail()
             }
         }
     ) {

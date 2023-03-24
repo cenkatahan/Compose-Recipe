@@ -11,12 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.view.composables.ChipGroup
 import com.atahan.compose_recipe.view.composables.MealRow
 import com.atahan.compose_recipe.view.composables.SearchBar
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController
+) {
     val mealSearched = remember { mutableStateOf("") }
 
     val scrollState = rememberScrollState()
@@ -43,7 +46,7 @@ fun HomeScreen() {
 
         Column {
             repeat((0..9).count()) {
-                MealRow()
+                MealRow(navController)
             }
         }
     }

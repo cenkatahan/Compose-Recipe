@@ -12,10 +12,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.common.Mock
+import com.atahan.compose_recipe.model.Screen
 
 @Composable
-fun MealRow() {
+fun MealRow(
+    navController: NavHostController
+) {
     val meals = Mock.fetchMockMeals()
 
     Column(modifier = Modifier.padding(16.dp)) {
@@ -36,6 +40,9 @@ fun MealRow() {
                         meal = meal,
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnTheMenu,
+                        onClickDetail = {
+                            navController.navigate(Screen.RecipeDetail.route)
+                        },
                         onClickFavorite = {
                             isFavorite = it
                         },

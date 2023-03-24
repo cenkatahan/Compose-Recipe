@@ -15,7 +15,7 @@ fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues
 
     NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(paddingValues)){
         composable(route = Screen.Home.route){
-            HomeScreen()
+            HomeScreen(navController)
         }
         composable(route = Screen.Favorites.route){
             FavoritesScreen()
