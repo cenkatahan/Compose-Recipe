@@ -33,11 +33,7 @@ fun MealCard(
         elevation = 4.dp,
         border = BorderStroke(1.dp, AppBlue),
         modifier = Modifier.size(width = 150.dp, height = 150.dp),
-        onClick = {
-            if (onClickDetail != null) {
-                onClickDetail()
-            }
-        }
+        onClick = { onClickDetail?.let { it() } }
     ) {
 
         Column(
