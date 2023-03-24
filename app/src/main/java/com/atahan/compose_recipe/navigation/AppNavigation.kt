@@ -5,36 +5,53 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.atahan.compose_recipe.model.Screen
 import com.atahan.compose_recipe.view.screen.*
 
 @Composable
 fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues) {
 
-    NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(paddingValues)){
-        composable(route = Screen.Home.route){
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Home.route,
+        modifier = Modifier.padding(paddingValues)
+    ) {
+        composable(route = Screen.Home.route) {
             HomeScreen(navController)
         }
-        composable(route = Screen.Favorites.route){
+        composable(route = Screen.Favorites.route) {
             FavoritesScreen()
         }
-        composable(route = Screen.MealMenu.route){
+        composable(route = Screen.MealMenu.route) {
             MealMenuScreen()
         }
 
-        composable(route = Screen.Profile.route){
+        composable(route = Screen.Profile.route) {
             ProfileScreen()
         }
 
-        composable(route = Screen.RecipeForm.route){
+        composable(route = Screen.RecipeForm.route) {
             RecipeFormScreen()
         }
 
-        composable(route = Screen.RecipeDetail.route){
-            RecipeFormScreen()
+        composable(
+            route = "${Screen.RecipeDetail.route}/{recipeId}",
+            arguments = listOf(
+                navArgument(name = "recipeId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+
+            backStackEntry.arguments?.getInt("recipeId")?.let { recipeId ->
+                RecipeDetailScreen(recipeId = recipeId)
+            }
+
         }
     }
-    
+
 }

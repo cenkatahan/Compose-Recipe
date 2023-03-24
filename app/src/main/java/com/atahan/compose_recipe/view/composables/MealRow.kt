@@ -41,7 +41,7 @@ fun MealRow(
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnTheMenu,
                         onClickDetail = {
-                            navController.navigate(Screen.RecipeDetail.route)
+                            navController.navigate(Screen.RecipeDetail.withArgs(meal.id.toString()))
                         },
                         onClickFavorite = {
                             isFavorite = it

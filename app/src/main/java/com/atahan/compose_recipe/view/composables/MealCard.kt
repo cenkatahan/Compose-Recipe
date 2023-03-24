@@ -12,11 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.model.Meal
-import com.atahan.compose_recipe.model.MealType
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -135,22 +133,4 @@ fun MealCard(
         }
     }
     Spacer(modifier = Modifier.width(8.dp))
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun MealCardPreview() {
-    val meal = Meal(
-        name = "Lazanya",
-        description = "HJHJHJHJHJHJH",
-        isFavorite = false,
-        type = MealType.FAST_FOOD,
-        prepareTime = 45
-    )
-    MealCard(
-        meal,
-        true,
-        onClickFavorite = { meal.isFavorite },
-        onClickToMenu = { meal.isOnTheMealMenu })
 }

@@ -11,4 +11,13 @@ sealed class Screen(val route: String, val icon: Int, val selectedIcon: Int) {
     object RecipeForm: Screen("Add Recipe", 0, 0)
     object RecipeDetail: Screen("Recipe Detail", 0, 0)
 
+    fun withArgs(vararg args: String): String {
+        return buildString {
+            append(route)
+            args.forEach {
+                append("/$it")
+            }
+        }
+    }
+
 }

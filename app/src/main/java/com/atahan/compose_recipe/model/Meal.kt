@@ -2,11 +2,10 @@ package com.atahan.compose_recipe.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.util.UUID
 
 @Parcelize
 data class Meal(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int,
     var name: String,
     var description: String,
     var isFavorite: Boolean = false,
