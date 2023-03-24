@@ -10,7 +10,7 @@ data class Meal(
     var description: String,
     var isFavorite: Boolean = false,
     var type: MealType,
-//    var ingredients: ArrayList<String>,
+    var ingredients: List<String>,
     var prepareTime: Int,
     var isOnTheMealMenu: Boolean = false
 ): Parcelable
