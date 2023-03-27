@@ -20,47 +20,23 @@ fun OutlinedChip(
     color: Color = AppBlue
 ) {
 
-    Row {
-        Box(
-            contentAlignment = Alignment.Center,
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .clip(RoundedCornerShape(24.dp))
+            .background(color)
+            .padding(2.dp)
+            .clip(RoundedCornerShape(24.dp))
+            .background(background)
+    ) {
+        Text(
+            text = "MILK",
+            color = color,
             modifier = Modifier
-                .clip(RoundedCornerShape(24.dp))
-                .background(AppGrey)
-//            .clip(RoundedCornerShape(24.dp))
-//            .background(color)
-//            .padding(2.dp)
-//            .clip(RoundedCornerShape(24.dp))
-//            .background(background)
-
-        ) {
-            Text(
-                text = "MILK",
-                color = color,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
-        }
-        Spacer(modifier = Modifier.width(8.dp))
-
-        //ALTERNATIVE
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .clip(RoundedCornerShape(24.dp))
-                .background(color)
-                .padding(2.dp)
-                .clip(RoundedCornerShape(24.dp))
-                .background(background)
-        ) {
-            Text(
-                text = "MILK",
-                color = color,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
-        }
-        Spacer(modifier = Modifier.width(8.dp))
+                .padding(8.dp)
+        )
     }
+    Spacer(modifier = Modifier.width(8.dp))
 
 }
 

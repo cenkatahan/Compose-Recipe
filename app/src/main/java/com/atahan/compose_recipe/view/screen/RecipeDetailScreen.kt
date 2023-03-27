@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.common.Mock
+import com.atahan.compose_recipe.ui.theme.AppGrey
 import com.atahan.compose_recipe.view.composables.OutlinedChip
 
 
@@ -64,6 +66,7 @@ fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
                 IconButton(
                     onClick = { },
                     modifier = Modifier
+                        .shadow(4.dp, RoundedCornerShape(24.dp))
                         .clip(RoundedCornerShape(24.dp))
                         .background(Color.White)
                         .align(Alignment.TopEnd)
@@ -94,6 +97,9 @@ fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
         //INGREDIENT CHIPS
         Spacer(modifier = Modifier.height(8.dp))
         Row {
+            OutlinedChip()
+            OutlinedChip()
+            OutlinedChip()
             OutlinedChip()
             OutlinedChip()
         }
