@@ -32,6 +32,6 @@ fun SearchBar(modifier: Modifier = Modifier, searchString: MutableState<String>)
         },
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp)),
+            .clip(RoundedCornerShape(4.dp)),
     )
 }
