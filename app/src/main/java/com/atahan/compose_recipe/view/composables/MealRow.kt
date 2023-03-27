@@ -37,7 +37,7 @@ fun MealRow(
                         mutableStateOf(meal.isOnTheMealMenu)
                     }
                     MealCard(
-                        meal = meal,
+                        recipe = meal,
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnTheMenu,
                         onClickDetail = {

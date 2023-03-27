@@ -14,13 +14,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
-import com.atahan.compose_recipe.model.Meal
+import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MealCard(
-    meal: Meal,
+    recipe: Recipe,
     isFavorite: Boolean = false,
     isOnTheMenu: Boolean = false,
     onClickFavorite: ((Boolean) -> Unit)? = null,
@@ -118,7 +118,7 @@ fun MealCard(
                 modifier = Modifier.padding(8.dp)
             ) {
                 Text(
-                    text = meal.name,
+                    text = recipe.name,
                     fontWeight = FontWeight.Bold,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
@@ -126,7 +126,7 @@ fun MealCard(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = meal.prepareTime.toString(),
+                    text = recipe.prepareTime.toString(),
                     maxLines = 1,
                 )
             }

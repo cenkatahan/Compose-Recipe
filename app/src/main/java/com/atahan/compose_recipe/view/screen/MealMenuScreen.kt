@@ -31,7 +31,7 @@ fun MealMenuScreen() {
                 }
 
                 MealCard(
-                    meal = mealsOnTheMenu,
+                    recipe = mealsOnTheMenu,
                     isOnTheMenu = isOnTheMenu,
                     onClickToMenu = {
                         isOnTheMenu = it

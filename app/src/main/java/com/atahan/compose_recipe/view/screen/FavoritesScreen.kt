@@ -29,7 +29,7 @@ fun FavoritesScreen() {
                 }
 
                 MealCard(
-                    meal = favMeal,
+                    recipe = favMeal,
                     isFavorite = isFavorite,
                     onClickFavorite = {
                         isFavorite = it
