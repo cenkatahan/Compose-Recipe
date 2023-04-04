@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,7 +13,7 @@ import androidx.navigation.navArgument
 import com.atahan.compose_recipe.view.screen.*
 
 @Composable
-fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues) {
+fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues = PaddingValues(0.dp)) {
 
     NavHost(
         navController = navController,
@@ -23,10 +24,10 @@ fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues
             HomeScreen(navController)
         }
         composable(route = Screen.Favorites.route) {
-            FavoritesScreen()
+            FavoritesScreen(navController)
         }
         composable(route = Screen.MealMenu.route) {
-            MealMenuScreen()
+            MealMenuScreen(navController)
         }
 
         composable(route = Screen.Profile.route) {
