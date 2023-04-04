@@ -30,16 +30,12 @@ fun HomeScreen(
                 modifier = Modifier.padding(16.dp),
                 onCLickProfile = {
                     navController.navigate(Screen.Profile.route) {
-                        popUpTo(Screen.Home.route) {
-                            inclusive = true
-                        }
+                        popUpTo(Screen.Home.route)
                     }
                 },
                 onClickAdd = {
                     navController.navigate(Screen.RecipeForm.route) {
-                        popUpTo(Screen.Home.route) {
-                            inclusive = true
-                        }
+                        popUpTo(Screen.Home.route)
                     }
                 },
             )

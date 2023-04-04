@@ -7,7 +7,6 @@ import androidx.navigation.navigation
 import com.atahan.compose_recipe.view.screen.FavoritesScreen
 import com.atahan.compose_recipe.view.screen.HomeScreen
 import com.atahan.compose_recipe.view.screen.MealMenuScreen
-import com.atahan.compose_recipe.view.screen.ProfileScreen
 
 fun NavGraphBuilder.bottomNavigation(
     navController: NavHostController

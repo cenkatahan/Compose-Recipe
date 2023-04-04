@@ -15,11 +15,11 @@ fun NavGraphBuilder.topBarNavigation(
         startDestination = Screen.Profile.route
     ) {
         composable(route = Screen.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(navController)
         }
 
         composable(route = Screen.RecipeForm.route) {
-            RecipeFormScreen()
+            RecipeFormScreen(navController)
         }
     }
 }

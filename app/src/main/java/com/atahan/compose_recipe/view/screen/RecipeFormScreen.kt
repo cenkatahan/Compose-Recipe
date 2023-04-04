@@ -7,9 +7,12 @@ import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
-fun RecipeFormScreen() {
+fun RecipeFormScreen(
+    navController: NavHostController
+) {
 
     Column(
         modifier = Modifier
