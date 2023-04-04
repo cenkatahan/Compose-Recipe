@@ -8,7 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.atahan.compose_recipe.model.Category
+import com.atahan.compose_recipe.enums.Category
 
 @Composable
 fun ChipGroup() {

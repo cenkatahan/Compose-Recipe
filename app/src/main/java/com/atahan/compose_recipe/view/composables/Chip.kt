@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.atahan.compose_recipe.model.Category
+import com.atahan.compose_recipe.enums.Category
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable

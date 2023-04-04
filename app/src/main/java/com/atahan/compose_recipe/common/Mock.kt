@@ -1,7 +1,7 @@
 package com.atahan.compose_recipe.common
 
 import com.atahan.compose_recipe.model.Recipe
-import com.atahan.compose_recipe.model.MealType
+import com.atahan.compose_recipe.enums.MealType
 
 object Mock {
     fun fetchMockMeals() = arrayListOf(

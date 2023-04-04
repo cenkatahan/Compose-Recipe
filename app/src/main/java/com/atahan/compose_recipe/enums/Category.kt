@@ -1,4 +1,4 @@
-package com.atahan.compose_recipe.model
+package com.atahan.compose_recipe.enums
 
 enum class Category {
     ALL,

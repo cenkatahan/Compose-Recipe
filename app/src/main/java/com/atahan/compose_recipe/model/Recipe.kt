@@ -1,6 +1,7 @@
 package com.atahan.compose_recipe.model
 
 import android.os.Parcelable
+import com.atahan.compose_recipe.enums.MealType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

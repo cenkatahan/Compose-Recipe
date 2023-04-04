@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
-import com.atahan.compose_recipe.model.Screen
+import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.navigation.AppNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
 import com.atahan.compose_recipe.view.composables.BottomBar

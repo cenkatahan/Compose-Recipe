@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.atahan.compose_recipe.model.Screen
+import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable

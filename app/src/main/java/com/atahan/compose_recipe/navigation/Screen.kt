@@ -1,4 +1,4 @@
-package com.atahan.compose_recipe.model
+package com.atahan.compose_recipe.navigation
 
 import com.atahan.compose_recipe.R
 

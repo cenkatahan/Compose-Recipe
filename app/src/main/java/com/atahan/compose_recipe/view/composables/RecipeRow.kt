@@ -14,7 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.common.Mock
-import com.atahan.compose_recipe.model.Screen
+import com.atahan.compose_recipe.navigation.Screen
 
 @Composable
 fun MealRow(
