@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.navigation.Graph
+import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.FormTopBar
 
 @Composable
@@ -23,7 +24,9 @@ fun RecipeFormScreen(
                 onClickHome = { navController.navigate(Graph.APP_GRAPH) },
                 onClickConfirmAdd = {
                     //TODO implement code here.
-                    navController.navigate(Graph.APP_GRAPH)
+                    navController.navigate(Graph.APP_GRAPH) {
+                        popUpTo(Screen.Home.route)
+                    }
                 }
             )
         }

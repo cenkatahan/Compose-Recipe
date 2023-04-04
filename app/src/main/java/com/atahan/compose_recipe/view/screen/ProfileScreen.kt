@@ -15,8 +15,16 @@ fun ProfileScreen(
     Scaffold(
         topBar = {
             ProfileTopBar(
-                onClickHome = { navController.navigate(Graph.APP_GRAPH) },
-                onClickAdd = { navController.navigate(Screen.RecipeForm.route) }
+                onClickHome = {
+                    navController.navigate(Graph.APP_GRAPH){
+                        popUpTo(Screen.Home.route)
+                    }
+                },
+                onClickAdd = {
+                    navController.navigate(Screen.RecipeForm.route){
+                        popUpTo(Screen.Home.route)
+                    }
+                }
             )
         }
     ) {
