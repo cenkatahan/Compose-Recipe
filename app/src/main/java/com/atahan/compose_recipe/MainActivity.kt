@@ -8,9 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.atahan.compose_recipe.navigation.AppNavigation
 import com.atahan.compose_recipe.ui.theme.ComposeRecipeTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +16,7 @@ class MainActivity : ComponentActivity() {
             ComposeRecipeTheme {
                 val navController = rememberNavController()
 
+                // A surface container using the 'background' color from the theme
                 AppNavigation(navController = navController)
             }
         }
