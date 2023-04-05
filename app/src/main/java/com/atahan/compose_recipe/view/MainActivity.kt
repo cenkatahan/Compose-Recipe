@@ -1,4 +1,4 @@
-package com.atahan.compose_recipe
+package com.atahan.compose_recipe.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
