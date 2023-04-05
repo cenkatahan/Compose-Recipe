@@ -22,5 +22,5 @@ interface RecipeDao {
     fun getRecipes(): List<Recipe>
 
     @Query("SELECT * FROM $TABLE_NAME WHERE id=:id")
-    fun getRecipeBy(id: Int)
+    fun getRecipeBy(id: Int): Recipe
 }
