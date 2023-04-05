@@ -19,19 +19,19 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Recipe(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = COL_NAME)
-    var name: String,
+    var name: String = "",
     @ColumnInfo(name = COL_DESC)
-    var description: String,
+    var description: String = "",
     @ColumnInfo(name = COL_IS_FAV)
     var isFavorite: Boolean = false,
     @ColumnInfo(name = COL_MEAL_TYPE)
-    var type: MealType,
+    var type: MealType = MealType.DESSERT,
     @ColumnInfo(name = COL_INGREDIENTS)
-    var ingredients: List<String>,
+    var ingredients: List<String> = listOf(),
     @ColumnInfo(name = COL_PREP_TIME)
-    var prepareTime: Int,
+    var prepareTime: Int = 0,
     @ColumnInfo(name = COL_ON_MENU)
     var isOnTheMealMenu: Boolean = false
 ): Parcelable
