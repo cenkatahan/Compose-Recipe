@@ -9,4 +9,6 @@ interface IRepository {
     fun removeBy(recipe: Recipe)
     fun add(recipe: Recipe)
     fun update(recipe: Recipe)
+
+    fun checkDbEmpty(): Boolean
 }

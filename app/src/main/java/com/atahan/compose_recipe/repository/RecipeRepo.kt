@@ -33,4 +33,5 @@ class RecipeRepo
     override fun removeBy(recipe: Recipe) = dao.delete(recipe)
     override fun add(recipe: Recipe) = dao.insert(recipe)
     override fun update(recipe: Recipe) = dao.update(recipe)
+    override fun checkDbEmpty() = dao.getRecipes().isEmpty()
 }
