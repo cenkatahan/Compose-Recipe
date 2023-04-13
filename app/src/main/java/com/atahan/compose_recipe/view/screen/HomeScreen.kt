@@ -13,13 +13,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.*
+import com.atahan.compose_recipe.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel(),
 ) {
     val mealSearched = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
@@ -73,8 +76,13 @@ fun HomeScreen(
             ChipGroup()
 
             Column {
+                //TODO viewmodel can be moved to meal row inside.
+                val recipes by remember { viewModel.recipes }
+                val isLoading by remember { viewModel.isLoading }
+                val error by remember { viewModel.error }
+
                 repeat((0..9).count()) {
-                    MealRow(navController)
+                    MealRow(navController, recipes)
                 }
             }
         }

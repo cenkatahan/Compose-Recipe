@@ -13,14 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.atahan.compose_recipe.common.Mock
+import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.navigation.Screen
 
 @Composable
 fun MealRow(
-    navController: NavHostController
+    navController: NavHostController,
+    meals: List<Recipe>
 ) {
-    val meals = Mock.fetchMockMeals()
 
     Column(modifier = Modifier.padding(16.dp)) {
 
