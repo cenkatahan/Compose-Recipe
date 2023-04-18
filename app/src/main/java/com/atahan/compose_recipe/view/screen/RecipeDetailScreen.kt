@@ -30,7 +30,6 @@ fun RecipeDetailScreen(
     viewModel: DetailViewModel = hiltViewModel()
 ) {
     val scrollState = rememberScrollState()
-//    val recipe = Mock.fetchMockMeals().first { it.id == recipeId }
     val recipe = viewModel.getRecipe(recipeId).data
     Column(
         verticalArrangement = Arrangement.Top,
