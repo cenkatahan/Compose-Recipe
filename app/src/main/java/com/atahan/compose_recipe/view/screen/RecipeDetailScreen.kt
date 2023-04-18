@@ -17,16 +17,21 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.atahan.compose_recipe.R
-import com.atahan.compose_recipe.common.Mock
-import com.atahan.compose_recipe.ui.theme.AppGrey
 import com.atahan.compose_recipe.view.composables.OutlinedChip
+import com.atahan.compose_recipe.viewmodel.DetailViewModel
 
 
 @Composable
-fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
+fun RecipeDetailScreen(
+    recipeId: Int,
+    modifier: Modifier = Modifier,
+    viewModel: DetailViewModel = hiltViewModel()
+) {
     val scrollState = rememberScrollState()
-    val recipe = Mock.fetchMockMeals().first { it.id == recipeId }
+//    val recipe = Mock.fetchMockMeals().first { it.id == recipeId }
+    val recipe = viewModel.getRecipe(recipeId).data
     Column(
         verticalArrangement = Arrangement.Top,
         modifier = modifier
@@ -39,10 +44,13 @@ fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
     ) {
 
         //TITLE
-        Text(
-            text = recipe.name,
-            style = MaterialTheme.typography.h2,
-        )
+        //TODO add elvis ope.
+        recipe?.let {
+            Text(
+                text = it.name,
+                style = MaterialTheme.typography.h2,
+            )
+        }
         Spacer(modifier = Modifier.height(8.dp))
         //BIG IMAGE
         Box(
@@ -77,7 +85,7 @@ fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
                     )
                 }
 
-                //MEAL BUTTON
+                //TODO MEAL BUTTON
 //                IconButton(
 //                    onClick = { },
 //                    modifier = Modifier
@@ -106,10 +114,13 @@ fun RecipeDetailScreen(recipeId: Int, modifier: Modifier = Modifier) {
 
         //DESCRIPTION
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = recipe.description,
-            modifier = Modifier.fillMaxWidth()
-        )
+        //TODO add elvis ope.
+        recipe?.description?.let {
+            Text(
+                text = it,
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
     }
 
 }
