@@ -1,7 +1,7 @@
 buildscript {
     ext {
         compose_version = '1.4.6'
-        room_version = '2.4.2'
+        room_version = '2.5.1'
         hilt_version = '2.44'
     }
     repositories {
