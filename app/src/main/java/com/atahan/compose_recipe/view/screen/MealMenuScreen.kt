@@ -1,13 +1,13 @@
 package com.atahan.compose_recipe.view.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +23,7 @@ import com.atahan.compose_recipe.view.composables.MealCard
 import com.atahan.compose_recipe.view.composables.TopBar
 import kotlin.math.floor
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MealMenuScreen(navController: NavHostController) {
@@ -66,24 +67,25 @@ fun MealMenuScreen(navController: NavHostController) {
         val fixedGripSize = floor(screenWidth / 144.dp).toInt()
 
         LazyVerticalGrid(
-            cells = GridCells.Fixed(count = fixedGripSize),
+            columns = GridCells.Fixed(count = fixedGripSize),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(recipesOnTheMenu) { recipe ->
-                var isOnTheMenu by remember {
-                    mutableStateOf(recipe.isOnTheMealMenu)
-                }
-
-                MealCard(
-                    recipe = recipe,
-                    isOnTheMenu = isOnTheMenu,
-                    onClickToMenu = {
-                        isOnTheMenu = it
+            content = {
+                items(recipesOnTheMenu.size) { index ->
+                    var isOnTheMenu by remember {
+                        mutableStateOf(recipesOnTheMenu[index].isOnTheMealMenu)
                     }
-                )
+
+                    MealCard(
+                        recipe = recipesOnTheMenu[index],
+                        isOnTheMenu = isOnTheMenu,
+                        onClickToMenu = {
+                            isOnTheMenu = it
+                        }
+                    )
+                }
             }
-        }
+        )
     }
 }

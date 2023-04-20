@@ -1,10 +1,10 @@
 package com.atahan.compose_recipe.view.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -20,6 +20,7 @@ import com.atahan.compose_recipe.view.composables.MealCard
 import com.atahan.compose_recipe.view.composables.TopBar
 import kotlin.math.floor
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FavoritesScreen(navController: NavHostController) {
@@ -61,24 +62,25 @@ fun FavoritesScreen(navController: NavHostController) {
         val fixedGripSize = floor(screenWidth / 144.dp).toInt()
 
         LazyVerticalGrid(
-            cells = GridCells.Fixed(count = fixedGripSize),
+            columns = GridCells.Fixed(count = fixedGripSize),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(favMeals) { recipe ->
-                var isFavorite by remember {
-                    mutableStateOf(recipe.isFavorite)
-                }
-
-                MealCard(
-                    recipe = recipe,
-                    isFavorite = isFavorite,
-                    onClickFavorite = {
-                        isFavorite = it
+            content = {
+                items(favMeals.size) { index ->
+                    var isFavorite by remember {
+                        mutableStateOf(favMeals[index].isFavorite)
                     }
-                )
+
+                    MealCard(
+                        recipe = favMeals[index],
+                        isFavorite = isFavorite,
+                        onClickFavorite = {
+                            isFavorite = it
+                        }
+                    )
+                }
             }
-        }
+        )
     }
 }
