@@ -21,6 +21,7 @@ object AppModule {
     @Provides
     fun provideDatabase(@ApplicationContext applicationContext: Context) = Room
         .databaseBuilder(applicationContext, RecipeDatabase::class.java, TABLE_NAME)
+        .fallbackToDestructiveMigration()
         .allowMainThreadQueries()
         .build()
 

@@ -1,5 +1,6 @@
 package com.atahan.compose_recipe.view.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,6 +20,7 @@ import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.*
 import com.atahan.compose_recipe.viewmodel.HomeViewModel
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     navController: NavHostController,

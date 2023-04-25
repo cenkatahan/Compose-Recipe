@@ -23,7 +23,7 @@ data class Recipe(
     @ColumnInfo(name = COL_DESC) var description: String,
     @ColumnInfo(name = COL_IS_FAV) var isFavorite: Boolean = false,
     @ColumnInfo(name = COL_MEAL_TYPE) var type: MealType,
-//    @ColumnInfo(name = COL_INGREDIENTS) var ingredients: List<String>,
+    @ColumnInfo(name = COL_INGREDIENTS) var ingredients: ArrayList<String>,
     @ColumnInfo(name = COL_PREP_TIME) var prepareTime: Int,
     @ColumnInfo(name = COL_ON_MENU) var isOnTheMealMenu: Boolean = false
 ) : Parcelable
