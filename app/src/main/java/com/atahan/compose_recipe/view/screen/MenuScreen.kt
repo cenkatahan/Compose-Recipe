@@ -26,7 +26,7 @@ import kotlin.math.floor
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MealMenuScreen(navController: NavHostController) {
+fun MenuScreen(navController: NavHostController) {
     val recipesOnTheMenu = Mock.fetchMockMeals().filter { it.isOnTheMealMenu }
 
 

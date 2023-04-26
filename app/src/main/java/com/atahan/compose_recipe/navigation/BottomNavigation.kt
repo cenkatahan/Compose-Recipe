@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.atahan.compose_recipe.view.screen.FavoritesScreen
 import com.atahan.compose_recipe.view.screen.HomeScreen
-import com.atahan.compose_recipe.view.screen.MealMenuScreen
+import com.atahan.compose_recipe.view.screen.MenuScreen
 
 fun NavGraphBuilder.bottomNavigation(
     navController: NavHostController
@@ -22,7 +22,7 @@ fun NavGraphBuilder.bottomNavigation(
             FavoritesScreen(navController)
         }
         composable(route = Screen.MealMenu.route) {
-            MealMenuScreen(navController)
+            MenuScreen(navController)
         }
     }
 }
