@@ -76,13 +76,16 @@ fun MealMenuScreen(navController: NavHostController) {
                     var isOnTheMenu by remember {
                         mutableStateOf(recipesOnTheMenu[index].isOnTheMealMenu)
                     }
+                    var isFavorite by remember {
+                        mutableStateOf(recipesOnTheMenu[index].isFavorite)
+                    }
 
                     MealCard(
                         recipe = recipesOnTheMenu[index],
                         isOnTheMenu = isOnTheMenu,
-                        onClickToMenu = {
-                            isOnTheMenu = it
-                        }
+                        isFavorite = isFavorite,
+                        onClickToMenu = { isOnTheMenu = it },
+                        onClickFavorite = { isFavorite = it }
                     )
                 }
             }
