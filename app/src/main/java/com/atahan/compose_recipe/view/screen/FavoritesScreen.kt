@@ -12,19 +12,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.atahan.compose_recipe.common.Mock
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.BottomBar
 import com.atahan.compose_recipe.view.composables.MealCard
 import com.atahan.compose_recipe.view.composables.TopBar
+import com.atahan.compose_recipe.viewmodel.FavoriteViewModel
 import kotlin.math.floor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun FavoritesScreen(navController: NavHostController) {
-    val favMeals = Mock.fetchMockMeals().filter { it.isFavorite }
+fun FavoritesScreen(
+    navController: NavHostController,
+    viewModel: FavoriteViewModel = hiltViewModel()
+) {
+    val favMeals = viewModel.favRecipes.value
 
     Scaffold(
         topBar = {
@@ -80,7 +84,12 @@ fun FavoritesScreen(navController: NavHostController) {
                         recipe = favMeals[index],
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnMenu,
-                        onClickFavorite = { isFavorite = it },
+                        onClickFavorite = {
+                            isFavorite = it
+                            favMeals[index].isFavorite = it
+                            viewModel.updateRecipe(favMeals[index])
+                            println("${favMeals[index]}")
+                        },
                         onClickToMenu = { isOnMenu = it }
                     )
                 }
