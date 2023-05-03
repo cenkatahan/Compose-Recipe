@@ -46,4 +46,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun updateRecipe(recipe: Recipe) {
+        viewModelScope.launch {
+            isLoading.value = true
+            val result = repo.update(recipe)
+            when (repo.update(recipe)) {
+                is Resource.Success -> {
+                    repo.update(recipe)
+                    loadRecipes()
+                    isLoading.value = false
+                }
+                is Resource.Error -> {
+                    isLoading.value = false
+                    result.message?.let { error.value = it }
+                }
+                else -> isLoading.value = true
+            }
+        }
+    }
+
 }

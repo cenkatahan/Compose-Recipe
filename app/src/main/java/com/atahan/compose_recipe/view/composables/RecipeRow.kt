@@ -12,14 +12,17 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.navigation.Screen
+import com.atahan.compose_recipe.viewmodel.HomeViewModel
 
 @Composable
 fun MealRow(
     navController: NavHostController,
-    meals: List<Recipe>
+    recipes: List<Recipe>,
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
 
     Column(modifier = Modifier.padding(16.dp)) {
@@ -28,26 +31,30 @@ fun MealRow(
         Spacer(modifier = Modifier.height(8.dp))
         LazyRow {
 
-            meals.forEach { meal ->
+            recipes.forEach { recipe ->
                 item {
                     var isFavorite by remember {
-                        mutableStateOf(meal.isFavorite)
+                        mutableStateOf(recipe.isFavorite)
                     }
                     var isOnTheMenu by remember {
-                        mutableStateOf(meal.isOnTheMealMenu)
+                        mutableStateOf(recipe.isOnTheMealMenu)
                     }
                     MealCard(
-                        recipe = meal,
+                        recipe = recipe,
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnTheMenu,
                         onClickDetail = {
-                            navController.navigate(Screen.RecipeDetail.withArgs(meal.id.toString()))
+                            navController.navigate(Screen.RecipeDetail.withArgs(recipe.id.toString()))
                         },
                         onClickFavorite = {
                             isFavorite = it
+                            recipe.isFavorite = it
+                            viewModel.updateRecipe(recipe)
                         },
                         onClickToMenu = {
                             isOnTheMenu = it
+                            recipe.isOnTheMealMenu = it
+                            viewModel.updateRecipe(recipe)
                         }
                     )
                 }
