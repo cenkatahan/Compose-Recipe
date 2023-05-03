@@ -88,9 +88,13 @@ fun FavoritesScreen(
                             isFavorite = it
                             favMeals[index].isFavorite = it
                             viewModel.updateRecipe(favMeals[index])
-                            println("${favMeals[index]}")
                         },
-                        onClickToMenu = { isOnMenu = it }
+                        onClickToMenu = {
+                            isOnMenu = it
+                            favMeals[index].isOnTheMealMenu = it
+                            viewModel.updateRecipe(favMeals[index])
+                            println("${viewModel.favRecipes.value[index]}")
+                        }
                     )
                 }
             }
