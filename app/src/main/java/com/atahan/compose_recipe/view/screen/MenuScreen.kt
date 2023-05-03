@@ -15,20 +15,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.atahan.compose_recipe.common.Mock
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.BottomBar
 import com.atahan.compose_recipe.view.composables.MealCard
 import com.atahan.compose_recipe.view.composables.TopBar
+import com.atahan.compose_recipe.viewmodel.MenuViewModel
 import kotlin.math.floor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MenuScreen(navController: NavHostController) {
-    val recipesOnTheMenu = Mock.fetchMockMeals().filter { it.isOnTheMealMenu }
-
+fun MenuScreen(
+    navController: NavHostController,
+    viewModel: MenuViewModel = hiltViewModel()
+) {
+//    val recipesOnTheMenu = Mock.fetchMockMeals().filter { it.isOnTheMealMenu }
+    val recipesOnTheMenu = viewModel.recipesOnMenu
 
     Scaffold(
         topBar = {
@@ -72,20 +76,28 @@ fun MenuScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             content = {
-                items(recipesOnTheMenu.size) { index ->
+                items(recipesOnTheMenu.value.size) { index ->
                     var isOnTheMenu by remember {
-                        mutableStateOf(recipesOnTheMenu[index].isOnTheMealMenu)
+                        mutableStateOf(recipesOnTheMenu.value[index].isOnTheMealMenu)
                     }
                     var isFavorite by remember {
-                        mutableStateOf(recipesOnTheMenu[index].isFavorite)
+                        mutableStateOf(recipesOnTheMenu.value[index].isFavorite)
                     }
 
                     MealCard(
-                        recipe = recipesOnTheMenu[index],
+                        recipe = recipesOnTheMenu.value[index],
                         isOnTheMenu = isOnTheMenu,
                         isFavorite = isFavorite,
-                        onClickToMenu = { isOnTheMenu = it },
-                        onClickFavorite = { isFavorite = it }
+                        onClickToMenu = {
+                            isOnTheMenu = it
+                            recipesOnTheMenu.value[index].isOnTheMealMenu = it
+                            viewModel.updateRecipe(recipesOnTheMenu.value[index])
+                        },
+                        onClickFavorite = {
+                            isFavorite = it
+                            recipesOnTheMenu.value[index].isFavorite = it
+                            viewModel.updateRecipe(recipesOnTheMenu.value[index])
+                        }
                     )
                 }
             }
