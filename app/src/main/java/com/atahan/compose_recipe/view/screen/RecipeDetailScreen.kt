@@ -23,6 +23,7 @@ import com.atahan.compose_recipe.view.composables.OutlinedChip
 import com.atahan.compose_recipe.viewmodel.DetailViewModel
 
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun RecipeDetailScreen(
     recipeId: Int,
@@ -103,7 +104,13 @@ fun RecipeDetailScreen(
 
         //INGREDIENT CHIPS
         Spacer(modifier = Modifier.height(8.dp))
-        Row {
+        FlowRow {
+            OutlinedChip()
+            OutlinedChip()
+            OutlinedChip()
+            OutlinedChip()
+            OutlinedChip()
+            OutlinedChip()
             OutlinedChip()
             OutlinedChip()
             OutlinedChip()
