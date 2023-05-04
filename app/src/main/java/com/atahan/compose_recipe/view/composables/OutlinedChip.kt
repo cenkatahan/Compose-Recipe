@@ -12,29 +12,30 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.ui.theme.AppBlue
-import com.atahan.compose_recipe.ui.theme.AppGrey
 
 @Composable
 fun OutlinedChip(
     background: Color = Color.White,
     color: Color = AppBlue
 ) {
-
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .clip(RoundedCornerShape(24.dp))
-            .background(color)
-            .padding(2.dp)
-            .clip(RoundedCornerShape(24.dp))
-            .background(background)
-    ) {
-        Text(
-            text = "MILK",
-            color = color,
+    Column {
+        Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
-                .padding(8.dp)
-        )
+                .clip(RoundedCornerShape(24.dp))
+                .background(color)
+                .padding(2.dp)
+                .clip(RoundedCornerShape(24.dp))
+                .background(background)
+        ) {
+            Text(
+                text = "MILK",
+                color = color,
+                modifier = Modifier
+                    .padding(8.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
     }
     Spacer(modifier = Modifier.width(8.dp))
 
