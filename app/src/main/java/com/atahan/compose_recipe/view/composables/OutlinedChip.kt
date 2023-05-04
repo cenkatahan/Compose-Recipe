@@ -15,6 +15,7 @@ import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
 fun OutlinedChip(
+    ingredient: String,
     background: Color = Color.White,
     color: Color = AppBlue
 ) {
@@ -29,7 +30,7 @@ fun OutlinedChip(
                 .background(background)
         ) {
             Text(
-                text = "MILK",
+                text = ingredient,
                 color = color,
                 modifier = Modifier
                     .padding(8.dp)
@@ -44,5 +45,5 @@ fun OutlinedChip(
 @Preview
 @Composable
 fun PreviewOutlinedChip() {
-    OutlinedChip()
+    OutlinedChip("MILK")
 }
