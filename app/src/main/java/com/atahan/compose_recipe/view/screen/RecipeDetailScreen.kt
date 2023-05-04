@@ -101,21 +101,11 @@ fun RecipeDetailScreen(
             }
         }
 
-
-        //INGREDIENT CHIPS
         Spacer(modifier = Modifier.height(8.dp))
         FlowRow {
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
-            OutlinedChip()
+            recipe?.ingredients?.forEach { ingredient ->
+                OutlinedChip(ingredient = ingredient)
+            } ?: OutlinedChip(ingredient = "No Ingredients")
         }
 
         //DESCRIPTION
