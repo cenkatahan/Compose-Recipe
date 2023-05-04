@@ -39,6 +39,8 @@ fun Chip(
             .background(background)
             .clickable {
                 onClickSelect(category)
+                println("$category")
+
             },
         contentAlignment = Alignment.Center
     ) {

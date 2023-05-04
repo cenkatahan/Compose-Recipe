@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.atahan.compose_recipe.enums.Category
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.*
 import com.atahan.compose_recipe.viewmodel.HomeViewModel
@@ -28,6 +29,7 @@ fun HomeScreen(
 ) {
     val mealSearched = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
+    val selectedCategory = remember { mutableStateOf(Category.ALL) }
 
     Scaffold(
         topBar = {
@@ -75,18 +77,29 @@ fun HomeScreen(
                 searchString = mealSearched
             )
 
-            ChipGroup()
+            ChipGroup(
+                selectedCategory = selectedCategory,
+            )
 
-            Column {
-                //TODO viewmodel can be moved to meal row inside.
-                val recipes by remember { viewModel.recipes }
-                val isLoading by remember { viewModel.isLoading }
-                val error by remember { viewModel.error }
+            when (selectedCategory.value) {
+                Category.ALL -> {
+                    Column {
+                        val recipes by remember { viewModel.recipes }
 
-                repeat((0..9).count()) {
-                    MealRow(navController, recipes)
+                        //TODO add composables for isLoading and error.
+                        val isLoading by remember { viewModel.isLoading }
+                        val error by remember { viewModel.error }
+
+                        repeat((0..9).count()) {
+                            MealRow(navController, recipes)
+                        }
+                    }
+                }
+                else -> {
+                    Text(text = "NO RECIPE")
                 }
             }
+
         }
     }
 }
