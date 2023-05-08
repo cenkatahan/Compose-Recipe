@@ -10,6 +10,7 @@ sealed class Screen(val route: String, val icon: Int? = null, val selectedIcon: 
     object Profile : Screen("Profile")
     object RecipeForm : Screen("Add Recipe")
     object RecipeDetail : Screen("Recipe Detail")
+    object Search : Screen("Search")
 
     fun withArgs(vararg args: String): String {
         return buildString {

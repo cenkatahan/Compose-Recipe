@@ -5,4 +5,5 @@ object Graph {
     const val BOTTOM_NAV_GRAPH = "bottom_nav"
     const val TOP_BAR_GRAPH = "top_bar_nav"
     const val DETAIL_GRAPH = "detail_graph"
+    const val SEARCH_GRAPH = "search_graph"
 }

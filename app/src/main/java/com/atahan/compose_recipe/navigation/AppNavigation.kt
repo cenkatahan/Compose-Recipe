@@ -20,6 +20,7 @@ fun AppNavigation(navController: NavHostController, paddingValues: PaddingValues
         bottomNavigation(navController = navController)
         topBarNavigation(navController = navController)
         detailNavigation(navController = navController)
+        searchNavigation(navController = navController)
     }
 
 }
