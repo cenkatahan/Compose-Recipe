@@ -43,7 +43,7 @@ fun BottomBar(
                         true ->
                             Column(verticalArrangement = Arrangement.Center) {
                                 Icon(
-                                    painterResource(id = screen.selectedIcon),
+                                    painterResource(id = screen.selectedIcon!!),
                                     contentDescription = screen.route,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
@@ -56,7 +56,7 @@ fun BottomBar(
                         else ->
                             Column(verticalArrangement = Arrangement.Center) {
                                 Icon(
-                                    painterResource(id = screen.icon),
+                                    painterResource(id = screen.icon!!),
                                     contentDescription = screen.route,
                                     modifier = Modifier.align(Alignment.CenterHorizontally)
                                 )
