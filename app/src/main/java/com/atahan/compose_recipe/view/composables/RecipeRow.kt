@@ -22,12 +22,13 @@ import com.atahan.compose_recipe.viewmodel.HomeViewModel
 fun MealRow(
     navController: NavHostController,
     recipes: List<Recipe>,
+    title: String = "TITLE",
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
     Column(modifier = Modifier.padding(16.dp)) {
 
-        Text(text = "TITLE", fontWeight = FontWeight.Bold)
+        Text(text = title, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(8.dp))
         LazyRow {
 

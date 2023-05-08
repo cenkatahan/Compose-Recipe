@@ -45,7 +45,7 @@ fun Chip(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = category.name.uppercase(),
+            text = category.title.uppercase(),
             color = textColor,
             modifier = Modifier
                 .padding(8.dp)

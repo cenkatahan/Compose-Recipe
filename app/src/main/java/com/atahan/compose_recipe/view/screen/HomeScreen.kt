@@ -81,25 +81,31 @@ fun HomeScreen(
                 selectedCategory = selectedCategory,
             )
 
-            when (selectedCategory.value) {
-                Category.ALL -> {
-                    Column {
-                        val recipes by remember { viewModel.recipes }
+            Column {
+                val recipes by remember { viewModel.recipes }
+                //TODO add composables for isLoading and error.
+                val isLoading by remember { viewModel.isLoading }
+                val error by remember { viewModel.error }
 
-                        //TODO add composables for isLoading and error.
-                        val isLoading by remember { viewModel.isLoading }
-                        val error by remember { viewModel.error }
-
-                        repeat((0..9).count()) {
-                            MealRow(navController, recipes)
+                when (selectedCategory.value) {
+                    Category.ALL -> {
+                        Category.values().forEach {
+                            MealRow(
+                                navController = navController,
+                                recipes = recipes,
+                                title = it.name
+                            )
                         }
                     }
-                }
-                else -> {
-                    Text(text = "NO RECIPE")
+                    else -> {
+                        MealRow(
+                            navController = navController,
+                            recipes = recipes.filter { it.type.title == selectedCategory.value.name },
+                            title = selectedCategory.value.name
+                        )
+                    }
                 }
             }
-
         }
     }
 }
