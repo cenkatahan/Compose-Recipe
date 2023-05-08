@@ -1,5 +1,6 @@
 package com.atahan.compose_recipe.view.screen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -13,6 +14,7 @@ import com.atahan.compose_recipe.navigation.Graph
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.FormTopBar
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RecipeFormScreen(
     navController: NavHostController
