@@ -27,9 +27,7 @@ fun SearchButton(
     navController: NavHostController
 ) {
     OutlinedButton(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier = modifier,
         border = BorderStroke(0.5.dp, AppBlue),
         colors = ButtonDefaults.outlinedButtonColors(
             backgroundColor = AppGrey
