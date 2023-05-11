@@ -51,10 +51,23 @@ class SearchViewModel @Inject constructor(
             recipes.value = recipes.value.filter {
                 it.name.lowercase().contains(query.lowercase())
             }
+
+            val isFoundAny = recipes.value.any {
+                it.name.lowercase().contains(query.lowercase())
+            }
+
+            if (!isFoundAny) {
+                isLoading.value = false
+                error.value = "No such a recipe."
+            }
+
             if (recipes.value.isEmpty()) {
                 isLoading.value = false
+                error.value = ""
                 repo.getRecipes().data?.let { recipes.value = it }
             }
+
+            error.value = ""
             isLoading.value = false
         }
     }
