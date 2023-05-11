@@ -14,13 +14,18 @@ import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @Composable
-fun SearchBar(modifier: Modifier = Modifier, searchString: MutableState<String>) {
+fun SearchBar(
+    modifier: Modifier = Modifier,
+    searchString: MutableState<String>,
+    onSearchChange: (String) -> Unit
+) {
 
     //BasicTextField may allow to customize TextField background.
     TextField(
         value = searchString.value,
         onValueChange = {
             searchString.value = it
+            onSearchChange(it)
         },
         label = { Text(text = "Search...") },
         leadingIcon = {
