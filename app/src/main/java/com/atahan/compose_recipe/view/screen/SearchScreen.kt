@@ -34,10 +34,9 @@ fun SearchScreen(
                 modifier = modifier
                     .padding(16.dp),
                 onSearchChange = {
-                    viewModel.search(it)
-                    println("SEARCH: $it")
-                    viewModel.searchedRecipes.value.forEach { recipe ->
-                        println("SEARCH RECIPES: ${recipe.name}}")
+                    when (it) {
+                        "" -> viewModel.loadAllRecipes()
+                        else -> viewModel.search(it)
                     }
                 }
             )
@@ -48,7 +47,7 @@ fun SearchScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 content = {
-                    items(viewModel.searchedRecipes.value.size) { index ->
+                    items(viewModel.recipes.value.size) { index ->
                         var isFavorite by remember {
                             mutableStateOf(recipes[index].isFavorite)
                         }
@@ -64,13 +63,10 @@ fun SearchScreen(
                             onClickFavorite = {
                                 isFavorite = it
                                 recipes[index].isFavorite = it
-//                            viewModel.updateRecipe(favMeals[index])
                             },
                             onClickToMenu = {
                                 isOnMenu = it
                                 recipes[index].isOnTheMealMenu = it
-//                            viewModel.updateRecipe(favMeals[index])
-                                println("${viewModel.recipes.value[index]}")
                             }
                         )
                     }
