@@ -19,7 +19,7 @@ import com.atahan.compose_recipe.ui.theme.AppBlue
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MealCard(
+fun RecipeCard(
     recipe: Recipe,
     isFavorite: Boolean = false,
     isOnTheMenu: Boolean = false,

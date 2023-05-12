@@ -16,7 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.BottomBar
-import com.atahan.compose_recipe.view.composables.MealCard
+import com.atahan.compose_recipe.view.composables.RecipeCard
 import com.atahan.compose_recipe.view.composables.TopBar
 import com.atahan.compose_recipe.viewmodel.FavoriteViewModel
 import kotlin.math.floor
@@ -80,7 +80,7 @@ fun FavoritesScreen(
                         mutableStateOf(favMeals[index].isOnTheMealMenu)
                     }
 
-                    MealCard(
+                    RecipeCard(
                         recipe = favMeals[index],
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnMenu,

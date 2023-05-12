@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.atahan.compose_recipe.view.composables.MealCard
+import com.atahan.compose_recipe.view.composables.RecipeCard
 import com.atahan.compose_recipe.view.composables.SearchBar
 import com.atahan.compose_recipe.viewmodel.SearchViewModel
 import kotlin.math.floor
@@ -56,7 +56,7 @@ fun SearchScreen(
                             mutableStateOf(recipes[index].isOnTheMealMenu)
                         }
 
-                        MealCard(
+                        RecipeCard(
                             recipe = recipes[index],
                             isFavorite = isFavorite,
                             isOnTheMenu = isOnMenu,

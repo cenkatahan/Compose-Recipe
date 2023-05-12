@@ -40,7 +40,7 @@ fun MealRow(
                     var isOnTheMenu by remember {
                         mutableStateOf(recipe.isOnTheMealMenu)
                     }
-                    MealCard(
+                    RecipeCard(
                         recipe = recipe,
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnTheMenu,
