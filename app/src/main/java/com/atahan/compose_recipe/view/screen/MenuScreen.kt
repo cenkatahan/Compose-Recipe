@@ -77,7 +77,7 @@ fun MenuScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             content = {
                 items(recipesOnTheMenu.value.size) { index ->
-                    var isOnTheMenu by remember {
+                    val isOnTheMenu by remember {
                         mutableStateOf(recipesOnTheMenu.value[index].isOnTheMealMenu)
                     }
                     var isFavorite by remember {
@@ -89,7 +89,6 @@ fun MenuScreen(
                         isOnTheMenu = isOnTheMenu,
                         isFavorite = isFavorite,
                         onClickToMenu = {
-                            isOnTheMenu = it
                             recipesOnTheMenu.value[index].isOnTheMealMenu = it
                             viewModel.updateRecipe(recipesOnTheMenu.value[index])
                         },

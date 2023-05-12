@@ -31,12 +31,10 @@ class MenuViewModel @Inject constructor(
                     recipesOnMenu.value = result.data?.filter { it.isOnTheMealMenu } ?: listOf()
                     isLoading.value = false
                 }
-
                 is Resource.Error -> {
                     error.value = result.message.toString()
                     isLoading.value = false
                 }
-
                 else -> isLoading.value = true
             }
 
@@ -51,6 +49,7 @@ class MenuViewModel @Inject constructor(
                 is Resource.Success -> {
                     repo.update(recipe)
                     isLoading.value = false
+                    loadRecipesOnMenu()
                 }
                 is Resource.Error -> {
                     error.value = result.message.toString()
