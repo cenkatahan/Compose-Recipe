@@ -71,12 +71,12 @@ fun FavoritesScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             content = {
-                items(favMeals.size) { index ->
-                    var isFavorite by remember {
-                        mutableStateOf(favMeals[index].isFavorite)
+                items(viewModel.favRecipes.value.size) { index ->
+                    val isFavorite by remember {
+                        mutableStateOf(viewModel.favRecipes.value[index].isFavorite)
                     }
 
-                    var isOnMenu by remember {
+                    val isOnMenu by remember {
                         mutableStateOf(favMeals[index].isOnTheMealMenu)
                     }
 
@@ -85,12 +85,10 @@ fun FavoritesScreen(
                         isFavorite = isFavorite,
                         isOnTheMenu = isOnMenu,
                         onClickFavorite = {
-                            isFavorite = it
                             favMeals[index].isFavorite = it
                             viewModel.updateRecipe(favMeals[index])
                         },
                         onClickToMenu = {
-                            isOnMenu = it
                             favMeals[index].isOnTheMealMenu = it
                             viewModel.updateRecipe(favMeals[index])
                             println("${viewModel.favRecipes.value[index]}")

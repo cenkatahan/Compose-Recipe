@@ -50,6 +50,7 @@ class FavoriteViewModel @Inject constructor(
                 is Resource.Success -> {
                     repo.update(recipe)
                     isLoading.value = false
+                    loadFavoriteRecipes()
                 }
                 is Resource.Error -> {
                     isLoading.value = false
