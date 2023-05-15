@@ -17,8 +17,7 @@ class SearchViewModel @Inject constructor(
     var recipes = mutableStateOf<List<Recipe>>(listOf())
     var isLoading = mutableStateOf(false)
     var error = mutableStateOf("")
-//    val searchedRecipes = mutableStateOf<List<Recipe>>(listOf())
-
+    val allRecipes = mutableStateOf<List<Recipe>>(listOf())
 
     init {
         loadAllRecipes()
@@ -32,6 +31,7 @@ class SearchViewModel @Inject constructor(
             when (repo.getRecipes()) {
                 is Resource.Success -> {
                     result.data?.let { recipes.value = it }
+                    result.data?.let { allRecipes.value = it }
                     isLoading.value = false
                 }
                 is Resource.Error -> {
@@ -48,7 +48,7 @@ class SearchViewModel @Inject constructor(
     fun search(query: String) {
         viewModelScope.launch {
             isLoading.value = true
-            recipes.value = recipes.value.filter {
+            recipes.value = allRecipes.value.filter {
                 it.name.lowercase().contains(query.lowercase())
             }
 
@@ -64,7 +64,6 @@ class SearchViewModel @Inject constructor(
             if (recipes.value.isEmpty()) {
                 isLoading.value = false
                 error.value = ""
-                repo.getRecipes().data?.let { recipes.value = it }
             }
 
             error.value = ""

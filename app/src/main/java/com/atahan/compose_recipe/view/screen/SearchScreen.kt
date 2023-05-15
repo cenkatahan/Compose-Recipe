@@ -25,7 +25,6 @@ fun SearchScreen(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val fixedGripSize = floor(screenWidth / 144.dp).toInt()
-    val recipes = remember { viewModel.recipes.value }
 
     Scaffold {
         Column {
@@ -49,24 +48,24 @@ fun SearchScreen(
                 content = {
                     items(viewModel.recipes.value.size) { index ->
                         var isFavorite by remember {
-                            mutableStateOf(recipes[index].isFavorite)
+                            mutableStateOf(viewModel.recipes.value[index].isFavorite)
                         }
 
                         var isOnMenu by remember {
-                            mutableStateOf(recipes[index].isOnTheMealMenu)
+                            mutableStateOf(viewModel.recipes.value[index].isOnTheMealMenu)
                         }
 
                         RecipeCard(
-                            recipe = recipes[index],
+                            recipe = viewModel.recipes.value[index],
                             isFavorite = isFavorite,
                             isOnTheMenu = isOnMenu,
                             onClickFavorite = {
                                 isFavorite = it
-                                recipes[index].isFavorite = it
+                                viewModel.recipes.value[index].isFavorite = it
                             },
                             onClickToMenu = {
                                 isOnMenu = it
-                                recipes[index].isOnTheMealMenu = it
+                                viewModel.recipes.value[index].isOnTheMealMenu = it
                             }
                         )
                     }
