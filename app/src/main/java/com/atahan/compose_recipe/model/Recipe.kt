@@ -20,7 +20,7 @@ import kotlinx.parcelize.Parcelize
 data class Recipe(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = COL_NAME) var name: String,
-    @ColumnInfo(name = COL_DESC) var description: String,
+    @ColumnInfo(name = COL_DESC) var description: ArrayList<String>,
     @ColumnInfo(name = COL_IS_FAV) var isFavorite: Boolean = false,
     @ColumnInfo(name = COL_MEAL_TYPE) var type: MealType,
     @ColumnInfo(name = COL_INGREDIENTS) var ingredients: ArrayList<String>,

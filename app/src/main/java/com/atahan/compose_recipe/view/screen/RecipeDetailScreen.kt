@@ -111,9 +111,9 @@ fun RecipeDetailScreen(
         //DESCRIPTION
         Spacer(modifier = Modifier.height(8.dp))
         //TODO add elvis ope.
-        recipe?.description?.let {
+        recipe?.description?.first().let {
             Text(
-                text = it,
+                text = it!!,
                 modifier = Modifier.fillMaxWidth()
             )
         }

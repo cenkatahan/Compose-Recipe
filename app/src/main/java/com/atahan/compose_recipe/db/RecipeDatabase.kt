@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.atahan.compose_recipe.model.Recipe
 
-@Database(entities = [Recipe::class], version = 2)
+@Database(entities = [Recipe::class], version = 3)
 @TypeConverters(value = [Converters::class])
 abstract class RecipeDatabase() : RoomDatabase() {
     abstract fun dao(): RecipeDao
