@@ -23,7 +23,6 @@ fun HomeScreen(
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
-    val mealSearched = remember { mutableStateOf("") }
     val scrollState = rememberScrollState()
     val selectedCategory = remember { mutableStateOf(Category.ALL) }
 
@@ -92,7 +91,7 @@ fun HomeScreen(
                             MealRow(
                                 navController = navController,
                                 recipes = recipes,
-                                title = it.name
+                                title = it.title
                             )
                         }
                     }
