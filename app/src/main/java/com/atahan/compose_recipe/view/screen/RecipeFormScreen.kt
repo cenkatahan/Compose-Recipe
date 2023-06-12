@@ -28,7 +28,11 @@ fun RecipeFormScreen(
     Scaffold(
         topBar = {
             FormTopBar(
-                onClickHome = { navController.navigate(Graph.APP_GRAPH) },
+                onClickHome = {
+                    navController.navigate(Graph.APP_GRAPH) {
+                        popUpTo(Screen.Home.route)
+                    }
+                },
                 onClickConfirmAdd = {
                     //TODO implement code here.
                     navController.navigate(Graph.APP_GRAPH) {
