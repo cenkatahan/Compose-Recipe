@@ -7,7 +7,7 @@ interface IRepository {
     fun getRecipes(): Resource<List<Recipe>>
     fun getRecipeBy(id: Int): Resource<Recipe>
     fun removeBy(recipe: Recipe)
-    fun add(recipe: Recipe)
+    fun add(recipe: Recipe): Resource<Recipe>
     fun update(recipe: Recipe): Resource<Recipe>
     fun checkDbEmpty(): Boolean
 }

@@ -11,18 +11,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.enums.Category
+import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.navigation.Graph
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.FormTopBar
+import com.atahan.compose_recipe.viewmodel.FormViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "MutableCollectionMutableState")
 @Composable
 fun RecipeFormScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: FormViewModel = hiltViewModel()
 ) {
 
     Scaffold(
@@ -35,8 +39,25 @@ fun RecipeFormScreen(
                 },
                 onClickConfirmAdd = {
                     //TODO implement code here.
-                    navController.navigate(Graph.APP_GRAPH) {
-                        popUpTo(Screen.Home.route)
+                    //TODO get parameters from viewmodel
+                    viewModel.save(
+                        Recipe(
+                            0,
+                            viewModel.recipeName.value,
+                            arrayListOf(),
+                            false,
+                            viewModel.mealType.value,
+                            arrayListOf(),
+//                        viewModel.prepTime.value.toInt()
+                            0
+                        )
+                    )
+                    println("RECIPE NAME: ${viewModel.recipeName.value}")
+
+                    if (viewModel.isSuccess.value) {
+                        navController.navigate(Graph.APP_GRAPH) {
+                            popUpTo(Screen.Home.route)
+                        }
                     }
                 }
             )
@@ -63,7 +84,10 @@ fun RecipeFormScreen(
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
                 value = recipeName,
-                onValueChange = { recipeName = it },
+                onValueChange = {
+                    recipeName = it
+                    viewModel.storeRecipe(it)
+                },
                 label = { Text(text = "Recipe Name") },
                 modifier = Modifier.fillMaxWidth()
             )
@@ -76,9 +100,11 @@ fun RecipeFormScreen(
                         prepTime = ""
                         return@TextField
                     }
-                    if (it.toInt() < 100) {
-                        prepTime = it
+                    if (it.toInt() > 100) {
+                        return@TextField
                     }
+                    prepTime = it
+                    viewModel.storePrepTime(it)
                 },
                 label = { Text(text = "Preparation Time") },
                 modifier = Modifier.fillMaxWidth(),
@@ -93,10 +119,20 @@ fun RecipeFormScreen(
             ) {
                 TextField(
                     value = mealType,
-                    onValueChange = { mealType = it },
+                    onValueChange = { type ->
+                        mealType = type
+                        val selectedType = Category.values().first { it.title == type }
+                        viewModel.storeMealType(selectedType)
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     label = {
-                        Text(text = "Enter Meal Type.")
+                        Text(text = "Enter Meal Type")
+                    },
+                    trailingIcon = {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_dropdown),
+                            contentDescription = "down"
+                        )
                     }
                 )
 
@@ -108,7 +144,10 @@ fun RecipeFormScreen(
                 ) {
                     Category.values().forEach { category ->
                         DropdownMenuItem(
-                            onClick = { mealType = category.name }
+                            onClick = {
+                                mealType = category.name
+                                isExpanded = !isExpanded
+                            }
                         ) {
                             Text(text = category.name)
                         }
@@ -120,31 +159,31 @@ fun RecipeFormScreen(
 
 
             //TODO Description Section
-            Spacer(modifier = Modifier.height(8.dp))
-            Column {
-
-                (0 until descriptionSize).forEach {
-                    Spacer(modifier = Modifier.height(4.dp))
-                    TextField(
-                        value = "",
-                        onValueChange = {},
-                        label = { Text(text = "Recipe Description") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                Button(
-                    onClick = {
-                        descriptionSize++
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_add_circle),
-                        contentDescription = "add new description",
-                    )
-                }
-            }
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Column {
+//
+//                (0 until descriptionSize).forEachIndexed { index, desc ->
+//                    Spacer(modifier = Modifier.height(4.dp))
+//                    TextField(
+//                        value = "",
+//                        onValueChange = {},
+//                        label = { Text(text = "Recipe Description") },
+//                        modifier = Modifier.fillMaxWidth()
+//                    )
+//                }
+//
+//                Button(
+//                    onClick = {
+//                        descriptionSize++
+//                    },
+//                    modifier = Modifier.fillMaxWidth()
+//                ) {
+//                    Icon(
+//                        painter = painterResource(id = R.drawable.ic_add_circle),
+//                        contentDescription = "add new description",
+//                    )
+//                }
+//            }
         }
 
     }

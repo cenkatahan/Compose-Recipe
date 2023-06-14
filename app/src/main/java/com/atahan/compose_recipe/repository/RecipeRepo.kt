@@ -30,7 +30,15 @@ class RecipeRepo
 
     //TODO there must be a return type for methods down below.
     override fun removeBy(recipe: Recipe) = dao.delete(recipe)
-    override fun add(recipe: Recipe) = dao.insert(recipe)
+    override fun add(recipe: Recipe): Resource<Recipe> {
+        return try {
+            dao.insert(recipe)
+            Resource.Success()
+        } catch (e: Exception) {
+            Resource.Error("Recipe can not be updated.")
+        }
+    }
+
     override fun update(recipe: Recipe): Resource<Recipe> {
         return try {
             dao.update(recipe)
