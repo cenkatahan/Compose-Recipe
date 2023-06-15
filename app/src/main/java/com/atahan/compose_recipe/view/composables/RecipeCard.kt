@@ -70,13 +70,15 @@ fun RecipeCard(
                         true -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_favorite_selected),
-                                contentDescription = "favorite_icon"
+                                contentDescription = "favorite_icon",
+                                tint = AppBlue
                             )
                         }
                         else -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_favorite),
-                                contentDescription = "favorite_icon"
+                                contentDescription = "favorite_icon",
+                                tint = AppBlue
                             )
                         }
                     }
@@ -97,13 +99,15 @@ fun RecipeCard(
                         true -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_meal_plan_selected),
-                                contentDescription = "favorite_icon"
+                                contentDescription = "favorite_icon",
+                                tint = AppBlue
                             )
                         }
                         else -> {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_meal_plan),
-                                contentDescription = "favorite_icon"
+                                contentDescription = "favorite_icon",
+                                tint = AppBlue
                             )
                         }
                     }
