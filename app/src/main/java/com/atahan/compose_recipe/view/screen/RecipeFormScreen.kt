@@ -26,6 +26,7 @@ import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.navigation.Graph
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.ui.theme.AppBlue
+import com.atahan.compose_recipe.view.composables.AddItemSection
 import com.atahan.compose_recipe.view.composables.FormTopBar
 import com.atahan.compose_recipe.view.composables.RecipeDialog
 import com.atahan.compose_recipe.viewmodel.FormViewModel
@@ -53,10 +54,10 @@ fun RecipeFormScreen(
                         Recipe(
                             0,
                             viewModel.recipeName.value,
-                            arrayListOf(),
+                            ArrayList(viewModel.descriptions.toList()),
                             false,
                             viewModel.mealType.value,
-                            arrayListOf(),
+                            ArrayList(viewModel.ingredients.toList()),
 //                        viewModel.prepTime.value.toInt()
                             0
                         )
@@ -99,7 +100,7 @@ fun RecipeFormScreen(
                 value = recipeName,
                 onValueChange = {
                     recipeName = it
-                    viewModel.storeRecipe(it)
+                    viewModel.recipeName.value = it
                 },
                 label = { Text(text = "Recipe Name") },
                 modifier = Modifier.fillMaxWidth()
@@ -117,7 +118,7 @@ fun RecipeFormScreen(
                         return@TextField
                     }
                     prepTime = it
-                    viewModel.storePrepTime(it)
+                    viewModel.prepTime.value = it
                 },
                 label = { Text(text = "Preparation Time") },
                 modifier = Modifier.fillMaxWidth(),
@@ -136,7 +137,7 @@ fun RecipeFormScreen(
                     onValueChange = { type ->
                         mealType = type
                         val selectedType = Category.values().first { it.title == type }
-                        viewModel.storeMealType(selectedType)
+                        viewModel.mealType.value = selectedType
                     },
                     modifier = Modifier.fillMaxWidth(),
                     label = {
@@ -171,110 +172,28 @@ fun RecipeFormScreen(
                 }
             }
 
-            //TODO Move into an another composable
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Recipe Steps",
                 style = MaterialTheme.typography.h6,
             )
-            //TODO Description Section
-            Column {
-                Button(
-                    onClick = {
-                        //TODO open dialog
-                        parameterType = ParameterType.DESCRIPTION_STEPS
-                        isDialogShown = true
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_add_circle),
-                        contentDescription = "add new description",
-                    )
-                }
-
-                viewModel.descriptions.value.forEach { step ->
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            modifier = Modifier.align(Alignment.CenterStart)
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_dot),
-                                contentDescription = "dot",
-                                tint = AppBlue
-                            )
-                            Text(
-                                text = step,
-                            )
-                        }
-                        IconButton(
-                            modifier = Modifier.align(Alignment.CenterEnd),
-                            onClick = {
-                                //TODO openDialog and edit
-                            }
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_edit),
-                                contentDescription = "edit",
-                            )
-                        }
-                    }
-                }
-            }
+            AddItemSection(
+                section = viewModel.descriptions,
+                toggleDialog = { isDialogShown = it },
+                onClickDelete = { viewModel.descriptions.removeAt(it) },
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Ingredients",
                 style = MaterialTheme.typography.h6,
             )
-            Column {
-                Button(
-                    onClick = {
-                        parameterType = ParameterType.INGREDIENT
-                        isDialogShown = true
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_add_circle),
-                        contentDescription = "add new description",
-                    )
-                }
+            AddItemSection(
+                section = viewModel.ingredients,
+                toggleDialog = { isDialogShown = it },
+                onClickDelete = { viewModel.ingredients.removeAt(it) },
+            )
 
-                viewModel.ingredients.value.forEach { ingredient ->
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            modifier = Modifier.align(Alignment.CenterStart)
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_dot),
-                                contentDescription = "dot",
-                                tint = AppBlue
-                            )
-                            Text(
-                                text = ingredient,
-                            )
-                        }
-                        IconButton(
-                            modifier = Modifier.align(Alignment.CenterEnd),
-                            onClick = {
-                                //TODO openDialog and edit
-                            }
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_edit),
-                                contentDescription = "edit",
-                            )
-                        }
-                    }
-                }
-            }
 
             if (isDialogShown) {
                 RecipeDialog(
@@ -288,12 +207,12 @@ fun RecipeFormScreen(
                         isDialogShown = false
                     },
                     onConfirm = {
-                        //TODO add step to descriptions.
                         when (parameterType) {
-                            ParameterType.INGREDIENT -> viewModel.storeIngredient(it)
-                            ParameterType.DESCRIPTION_STEPS -> viewModel.storeDescriptionStep(it)
+                            ParameterType.INGREDIENT -> viewModel.ingredients.add(it)
+                            ParameterType.DESCRIPTION_STEPS -> viewModel.descriptions.add(it)
                         }
                         isDialogShown = false
+                        println("VIEWMODEL: \n${viewModel.descriptions}")
                     },
                 )
             }
