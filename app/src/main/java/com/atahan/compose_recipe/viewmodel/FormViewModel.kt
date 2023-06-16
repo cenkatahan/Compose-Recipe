@@ -1,12 +1,8 @@
 package com.atahan.compose_recipe.viewmodel
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import com.atahan.compose_recipe.enums.Category
-import com.atahan.compose_recipe.enums.MealType
 import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.repository.RecipeRepo
 import com.atahan.compose_recipe.util.Resource
@@ -25,13 +21,12 @@ class FormViewModel @Inject constructor(
     var recipeName = mutableStateOf("")
     var prepTime = mutableStateOf("")
     var mealType = mutableStateOf(Category.ALL)
-    var descriptions = mutableStateOf<ArrayList<String>>(arrayListOf())
-    var ingredients = mutableStateOf<ArrayList<String>>(arrayListOf())
+    var descriptions = mutableStateListOf<String>()
+    var ingredients = mutableStateListOf<String>()
 
     fun save(recipe: Recipe) {
-        val result = repo.add(recipe)
 
-        when (repo.add(recipe)) {
+        when (val result = repo.add(recipe)) {
             is Resource.Success -> {
                 isSuccess.value = true
                 isLoading.value = false
@@ -46,26 +41,6 @@ class FormViewModel @Inject constructor(
                 isSuccess.value = false
             }
         }
-    }
-
-    fun storeRecipe(str: String) {
-        recipeName.value = str
-    }
-
-    fun storePrepTime(time: String) {
-        prepTime.value = time
-    }
-
-    fun storeMealType(type: Category) {
-        mealType.value = type
-    }
-
-    fun storeDescriptionStep(step: String) {
-        descriptions.value.add(step)
-    }
-
-    fun storeIngredient(ingredient: String) {
-        ingredients.value.add(ingredient)
     }
 
 }
