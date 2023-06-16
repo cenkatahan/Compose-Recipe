@@ -26,6 +26,7 @@ class FormViewModel @Inject constructor(
     var prepTime = mutableStateOf("")
     var mealType = mutableStateOf(Category.ALL)
     var descriptions = mutableStateOf<ArrayList<String>>(arrayListOf())
+    var ingredients = mutableStateOf<ArrayList<String>>(arrayListOf())
 
     fun save(recipe: Recipe) {
         val result = repo.add(recipe)
@@ -59,8 +60,12 @@ class FormViewModel @Inject constructor(
         mealType.value = type
     }
 
-    fun storeDesc(str: ArrayList<String>) {
-        descriptions.value = str
+    fun storeDescriptionStep(step: String) {
+        descriptions.value.add(step)
+    }
+
+    fun storeIngredient(ingredient: String) {
+        ingredients.value.add(ingredient)
     }
 
 }
