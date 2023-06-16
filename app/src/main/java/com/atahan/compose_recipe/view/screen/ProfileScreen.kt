@@ -23,7 +23,7 @@ import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.ui.theme.AppBlue
 import com.atahan.compose_recipe.view.composables.Gender
 import com.atahan.compose_recipe.view.composables.GenderSelection
-import com.atahan.compose_recipe.view.composables.ProfileTopBar
+import com.atahan.compose_recipe.view.composables.RecipeTopBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -32,13 +32,15 @@ fun ProfileScreen(
 ) {
     Scaffold(
         topBar = {
-            ProfileTopBar(
-                onClickHome = {
+            RecipeTopBar(
+                leadingIcon = painterResource(id = R.drawable.ic_home),
+                trailingIcon = painterResource(id = R.drawable.ic_add_circle),
+                onClickLeadingIcon = {
                     navController.navigate(Graph.APP_GRAPH) {
                         popUpTo(Screen.Home.route)
                     }
                 },
-                onClickAdd = {
+                onClickTrailingIcon = {
                     navController.navigate(Screen.RecipeForm.route) {
                         popUpTo(Screen.Home.route)
                     }

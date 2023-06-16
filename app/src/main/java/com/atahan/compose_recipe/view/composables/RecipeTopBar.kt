@@ -8,18 +8,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.ui.theme.AppBlue
 
-@Composable
-fun FormTopBar(
-    modifier: Modifier = Modifier,
-    onClickHome: () -> Unit,
-    onClickConfirmAdd: () -> Unit
-) {
 
+@Composable
+fun RecipeTopBar(
+    modifier: Modifier = Modifier,
+    leadingIcon: Painter,
+    trailingIcon: Painter,
+    onClickLeadingIcon: () -> Unit,
+    onClickTrailingIcon: () -> Unit
+) {
     TopAppBar(
         modifier = modifier
             .padding(16.dp)
@@ -35,10 +39,10 @@ fun FormTopBar(
 
             IconButton(
                 modifier = Modifier.size(24.dp),
-                onClick = { onClickHome() }
+                onClick = { onClickLeadingIcon() }
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_home),
+                    painter = leadingIcon,
                     contentDescription = "profile",
                     tint = AppBlue
                 )
@@ -46,10 +50,10 @@ fun FormTopBar(
 
             IconButton(
                 modifier = Modifier.size(24.dp),
-                onClick = { onClickConfirmAdd() }
+                onClick = { onClickTrailingIcon() }
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_confirm),
+                    painter = trailingIcon,
                     contentDescription = "add",
                     tint = AppBlue
                 )
@@ -57,4 +61,19 @@ fun FormTopBar(
 
         }
     }
+}
+
+@Preview
+@Composable
+fun AppPrev() {
+    RecipeTopBar(
+        leadingIcon = painterResource(id = R.drawable.ic_home),
+        trailingIcon = painterResource(id = R.drawable.ic_profile_default),
+        onClickLeadingIcon = {
+            //TODO navigateBack
+        },
+        onClickTrailingIcon = {
+            //TODO profile or add new recipe.
+        }
+    )
 }

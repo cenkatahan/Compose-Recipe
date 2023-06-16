@@ -11,13 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.navigation.Screen
 import com.atahan.compose_recipe.view.composables.BottomBar
 import com.atahan.compose_recipe.view.composables.RecipeCard
-import com.atahan.compose_recipe.view.composables.TopBar
+import com.atahan.compose_recipe.view.composables.RecipeTopBar
 import com.atahan.compose_recipe.viewmodel.FavoriteViewModel
 import kotlin.math.floor
 
@@ -32,22 +34,23 @@ fun FavoritesScreen(
 
     Scaffold(
         topBar = {
-            TopBar(
-                modifier = Modifier.padding(16.dp),
-                onCLickProfile = {
+            RecipeTopBar(
+                leadingIcon = painterResource(id = R.drawable.ic_profile_default),
+                trailingIcon = painterResource(id = R.drawable.ic_add_circle),
+                onClickLeadingIcon = {
                     navController.navigate(Screen.Profile.route) {
                         popUpTo(Screen.Home.route) {
                             inclusive = true
                         }
                     }
                 },
-                onClickAdd = {
+                onClickTrailingIcon = {
                     navController.navigate(Screen.RecipeForm.route) {
                         popUpTo(Screen.Home.route) {
                             inclusive = true
                         }
                     }
-                },
+                }
             )
         },
         bottomBar = {

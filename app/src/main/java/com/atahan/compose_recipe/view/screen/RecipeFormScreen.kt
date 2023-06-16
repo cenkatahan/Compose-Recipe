@@ -11,7 +11,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -25,10 +24,9 @@ import com.atahan.compose_recipe.enums.Category
 import com.atahan.compose_recipe.model.Recipe
 import com.atahan.compose_recipe.navigation.Graph
 import com.atahan.compose_recipe.navigation.Screen
-import com.atahan.compose_recipe.ui.theme.AppBlue
 import com.atahan.compose_recipe.view.composables.AddItemSection
-import com.atahan.compose_recipe.view.composables.FormTopBar
 import com.atahan.compose_recipe.view.composables.RecipeDialog
+import com.atahan.compose_recipe.view.composables.RecipeTopBar
 import com.atahan.compose_recipe.viewmodel.FormViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -41,15 +39,15 @@ fun RecipeFormScreen(
 
     Scaffold(
         topBar = {
-            FormTopBar(
-                onClickHome = {
+            RecipeTopBar(
+                leadingIcon = painterResource(id = R.drawable.ic_home),
+                trailingIcon = painterResource(id = R.drawable.ic_confirm),
+                onClickLeadingIcon = {
                     navController.navigate(Graph.APP_GRAPH) {
                         popUpTo(Screen.Home.route)
                     }
                 },
-                onClickConfirmAdd = {
-                    //TODO implement code here.
-                    //TODO get parameters from view-model
+                onClickTrailingIcon = {
                     viewModel.save(
                         Recipe(
                             0,
@@ -62,7 +60,6 @@ fun RecipeFormScreen(
                             0
                         )
                     )
-                    println("RECIPE NAME: ${viewModel.recipeName.value}")
 
                     if (viewModel.isSuccess.value) {
                         navController.navigate(Graph.APP_GRAPH) {
@@ -84,8 +81,6 @@ fun RecipeFormScreen(
             var recipeName by remember { mutableStateOf("") }
             var prepTime by remember { mutableStateOf("") }
             var mealType by remember { mutableStateOf(Category.ALL.title) }
-            var descriptionSteps by remember { mutableStateOf<ArrayList<String>>(arrayListOf()) }
-            var ingredients by remember { mutableStateOf<ArrayList<String>>(arrayListOf()) }
             var isExpanded by remember { mutableStateOf(false) }
             var isDialogShown by remember { mutableStateOf(false) }
             var parameterType by remember { mutableStateOf(ParameterType.DESCRIPTION_STEPS) }
