@@ -13,25 +13,18 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.atahan.compose_recipe.R
 import com.atahan.compose_recipe.ui.theme.AppBlue
-import com.atahan.compose_recipe.view.screen.ParameterType
-import com.atahan.compose_recipe.viewmodel.FormViewModel
 
 @Composable
 fun AddItemSection(
     section: SnapshotStateList<String>,
     toggleDialog: (Boolean) -> Unit,
     onClickDelete: (Int) -> Unit,
-    viewModel: FormViewModel = hiltViewModel()
 ) {
     Column {
         Button(
-            onClick = {
-                //TODO open dialog
-                toggleDialog(true)
-            },
+            onClick = { toggleDialog(true) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Icon(
@@ -59,10 +52,7 @@ fun AddItemSection(
                 }
                 IconButton(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    onClick = {
-                        //TODO openDialog and edit
-                        onClickDelete(index)
-                    }
+                    onClick = { onClickDelete(index) }
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_delete),

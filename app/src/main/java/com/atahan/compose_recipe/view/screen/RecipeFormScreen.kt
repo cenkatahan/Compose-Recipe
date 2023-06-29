@@ -56,8 +56,7 @@ fun RecipeFormScreen(
                             false,
                             viewModel.mealType.value,
                             ArrayList(viewModel.ingredients.toList()),
-//                        viewModel.prepTime.value.toInt()
-                            0
+                            viewModel.prepTime.value.toInt()
                         )
                     )
 
@@ -174,7 +173,10 @@ fun RecipeFormScreen(
             )
             AddItemSection(
                 section = viewModel.descriptions,
-                toggleDialog = { isDialogShown = it },
+                toggleDialog = {
+                    isDialogShown = it
+                    parameterType = ParameterType.DESCRIPTION_STEPS
+                },
                 onClickDelete = { viewModel.descriptions.removeAt(it) },
             )
 
@@ -185,7 +187,10 @@ fun RecipeFormScreen(
             )
             AddItemSection(
                 section = viewModel.ingredients,
-                toggleDialog = { isDialogShown = it },
+                toggleDialog = {
+                    isDialogShown = it
+                    parameterType = ParameterType.INGREDIENT
+                },
                 onClickDelete = { viewModel.ingredients.removeAt(it) },
             )
 
